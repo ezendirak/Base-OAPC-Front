@@ -1,0 +1,63 @@
+<h2>FORM-COMPONENT</h2>
+<h3>{{titulo_form}}</h3>
+
+<form #formulario="ngForm" (ngSubmit)="onclick($event)">
+  <div class="form-group row margin-bottom">
+    <div>
+        <label for="campoA" class="col-md-2 col-xs-12">Referència</label>
+        <input type="text"  class="col-md-3 col-xs-12"    id="referencia"    name="referencia"    [(ngModel)]="referencia">
+    </div>
+
+    <div>
+        <label for="campoB" class="col-md-2 col-xs-12">Període</label>
+        <input type="text"  class="col-md-3 col-xs-12"    id="periode"    name="periode"    [(ngModel)]="periode">
+    </div>
+  </div>
+  <div class="form-group row margin-bottom">
+    <div >
+      <label for="campoC" class="col-md-2 col-xs-12">Empresa Informant</label>
+      <input type="text"  class="col-md-3 col-xs-12"    id="eInformant"    name="eInformant"    [(ngModel)]="eInformant">
+    </div>
+
+    <div >
+      <label for="campoC" class="col-md-2 col-xs-12">Usuari Informant</label>
+      <input type="text"  class="col-md-3 col-xs-12"    id="uInformant"    name="uInformant"    [(ngModel)]="uInformant">
+    </div>
+  </div>
+<div class="form-group row margin-bottom">
+  <label for="campoC" class="col-md-2 col-xs-12">Tipus Producte</label>
+ 
+  <select name="productes" [(ngModel)]="selectedTipusProducte">
+      <option *ngFor="let c of productes" [ngValue]="c">{{c}}</option>
+    </select>
+
+
+  <label for="campoC" class="col-md-2 col-xs-12">Varietat</label>
+  <input type="text"  class="col-md-3 col-xs-12"    id="varietat"    name="varietat"    [(ngModel)]="varietat">
+</div>
+
+<div class="form-group row margin-bottom">
+  <label for="campoC" class="col-md-2 col-xs-12">Qualitat</label>
+  <input type="text"  class="col-md-3 col-xs-12"    id="qualitat"    name="qualitat"    [(ngModel)]="qualitat">
+
+  <label for="campoC" class="col-md-2 col-xs-12">Calibre</label>
+  <input type="text"  class="col-md-3 col-xs-12"    id="calibre"    name="calibre"    [(ngModel)]="calibre">
+</div>
+
+<div class="form-group row margin-bottom">
+  <label for="campoC" class="col-md-2 col-xs-12">Quantitat venuda</label>
+  <input type="text"  class="col-md-3 col-xs-12"    id="qVenuda"    name="qVenuda"    [(ngModel)]="qVenuda">
+
+  <label for="campoC" class="col-md-2 col-xs-12">Preu a sortida</label>
+  <input type="text"  class="col-md-3 col-xs-12"    id="pSortida"    name="pSortida"    [(ngModel)]="pSortida">
+</div>
+
+<div class="form-group row margin-bottom">
+  <label for="campoC" class="col-md-2 col-xs-12">Tancada</label>
+  <input type="text"  class="col-md-3 col-xs-12"    id="tancada"    name="tancada"    [(ngModel)]="tancada">
+</div>
+
+    <div class="form-group row margin-bottom">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>    
+</form>

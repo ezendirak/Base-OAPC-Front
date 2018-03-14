@@ -1,0 +1,21 @@
+<div class="container">
+  
+  <app-form-register [titulo_form]="'Formulario de entrada Registre'"  
+                  (evento_form1)="onClickBuscarForm($event)"
+  >
+  </app-form-register>     
+
+  <app-taula-register [items]="items" 
+                  [productes]="productes"
+                  
+                  (evento_list_put)="onClickPutList($event)" 
+                  (evento_list_delete)="onClickDeleteList($event)"
+  >
+  </app-taula-register>
+
+  <app-button-taula-register [pagination]="pagination" 
+                         (evento_list_pagination)="onClickPagination($event)"
+  >
+  </app-button-taula-register>
+
+</div>
