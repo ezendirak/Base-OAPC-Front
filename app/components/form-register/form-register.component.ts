@@ -50,7 +50,7 @@ export class FormRegisterComponent implements OnInit {
       this.comboInfo2.ColorsCarn = ['troll','Test2','Test3'];
       this.comboInfo2.Qualitats = ['Crem', 'de', 'la', 'crem'];
       this.comboInfo2.Calibres = ['molto', 'canelo'];
-      this.comboInfo2.Varietats = ['de', 'todo', 'un', 'poco'];
+      // this.comboInfo2.Varietats = ['de', 'todo', 'un', 'poco'];
       console.log("Segon log: " + this.comboInfo2);
     }
     
