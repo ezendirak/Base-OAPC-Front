@@ -2,11 +2,14 @@
   
   <app-form-register [titulo_form]="'Formulario de entrada Registre'"  
                   (evento_form1)="onClickBuscarForm($event)"
+                  (evento_tProduct)="onClickParams($event)"
+                  [productes]="productes"
+                  [comboInfo]="comboInfo"
+                  [comboLleno]="comboLleno"
   >
   </app-form-register>     
 
   <app-taula-register [items]="items" 
-                  [productes]="productes"
                   
                   (evento_list_put)="onClickPutList($event)" 
                   (evento_list_delete)="onClickDeleteList($event)"

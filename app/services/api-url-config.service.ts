@@ -32,6 +32,13 @@ export class ApiUrlConfigService {
   public _deleteRegistreURL      = '/api/v4/registres/';
 
   public _getProductesURL        = '/api/v3/pdu/productes/';
+  public _getCombosProd          = '/api/v3/pdu/combos/';
+
+  public _getCombosProdColorCarn     = '/api/v3/pdu/colorcarn/';
+  public _getCombosProdQualitat      = '/api/v3/pdu/qualitat/';
+  public _getCombosProdVarietat      = '/api/v3/pdu/varietat/';
+  public _getCombosProdCalibre       = '/api/v3/pdu/calibre/';
+
 
   constructor() 
   { }

@@ -26,22 +26,38 @@
   </div>
 <div class="form-group row margin-bottom">
   <label for="campoC" class="col-md-2 col-xs-12">Tipus Producte</label>
- 
-  <select name="productes" [(ngModel)]="selectedTipusProducte">
-      <option *ngFor="let c of productes" [ngValue]="c">{{c}}</option>
-    </select>
 
+  
+    <select class="col-md-3 col-xs-12" name="productes" [(ngModel)]="selectedTipusProducte" (change) = "changeSelectedTipusProducte($event)" >
+        <option *ngFor="let c of productes" [ngValue]="c">{{c}}</option>
+    </select>
+  
 
   <label for="campoC" class="col-md-2 col-xs-12">Varietat</label>
-  <input type="text"  class="col-md-3 col-xs-12"    id="varietat"    name="varietat"    [(ngModel)]="varietat">
+  <!-- <input type="text"  class="col-md-3 col-xs-12"    id="varietat"    name="varietat"    [(ngModel)]="varietat"> -->
+  
+  <ng-container *ngIf="comboLleno;then content else other_content"></ng-container>
+  <ng-template #content>
+  <select class="col-md-3 col-xs-12" name="varietats" [(ngModel)]="selectedVarietat" >
+    <option *ngFor="let v of this.comboInfo2.Varietats" [ngValue]="v">{{v}}</option>
+  </select> 
+</ng-template>
+<ng-template #noContent>Siuuu</ng-template>
 </div>
 
 <div class="form-group row margin-bottom">
-  <label for="campoC" class="col-md-2 col-xs-12">Qualitat</label>
-  <input type="text"  class="col-md-3 col-xs-12"    id="qualitat"    name="qualitat"    [(ngModel)]="qualitat">
+  
+    <label for="campoC" class="col-md-2 col-xs-12">Qualitat</label>
+    <!-- <input type="text"  class="col-md-3 col-xs-12"    id="qualitat"    name="qualitat"    [(ngModel)]="qualitat"> -->
+    <!-- <select class="col-md-3 col-xs-12" name="qualitats" [(ngModel)]="selectedQualitat" >
+      <option *ngFor="let q of this.comboInfo2.Qualitats" [ngValue]="q">{{q}}</option>
+    </select> -->
 
   <label for="campoC" class="col-md-2 col-xs-12">Calibre</label>
-  <input type="text"  class="col-md-3 col-xs-12"    id="calibre"    name="calibre"    [(ngModel)]="calibre">
+  <!-- <input type="text"  class="col-md-3 col-xs-12"    id="calibre"    name="calibre"    [(ngModel)]="calibre"> -->
+  <!-- <select class="col-md-3 col-xs-12" [(ngModel)]="selectedKalibre" >
+    <option *ngFor="let k of this.comboInfo2.Calibres" [ngValue]="k">{{k}}</option>
+  </select> -->
 </div>
 
 <div class="form-group row margin-bottom">

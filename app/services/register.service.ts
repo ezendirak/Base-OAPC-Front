@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders }    from '@angular/common/http';
 import { RegisterResponse } from '../interfaces/register-response';
 
 import { Observable}                  from 'rxjs/Rx';
+import { AtributsComboResponse } from '../interfaces/atributs-combo-response';
 
 @Injectable()
 export class RegisterService {
@@ -85,6 +86,49 @@ getRegistres(): Observable<RegisterResponse[]>
   getProductes(): Observable<string[]>
 {
   return this.http.get( this.ApiUrlConfigService._getProductesURL, 
+                        this.AuthorizationService.header_token()
+                      )
+                  .map(respuesta => respuesta)
+                  .catch((error: any) => Observable.throw(error));  
+}
+
+getCombos(tipusProducte: String): Observable<AtributsComboResponse>
+{
+  return this.http.get( this.ApiUrlConfigService._getCombosProd + tipusProducte, 
+                        this.AuthorizationService.header_token()
+                      )
+                  .map(respuesta => respuesta)
+                  .catch((error: any) => Observable.throw(error));  
+}
+
+
+getComboColorCarn(tipusProducte: String): Observable<String[]>
+{
+  return this.http.get( this.ApiUrlConfigService._getCombosProdColorCarn + tipusProducte, 
+                        this.AuthorizationService.header_token()
+                      )
+                  .map(respuesta => respuesta)
+                  .catch((error: any) => Observable.throw(error));  
+}
+getComboVarietat(tipusProducte: String): Observable<String[]>
+{
+  return this.http.get( this.ApiUrlConfigService._getCombosProdVarietat + tipusProducte, 
+                        this.AuthorizationService.header_token()
+                      )
+                  .map(respuesta => respuesta)
+                  .catch((error: any) => Observable.throw(error));  
+}
+getComboCalibre(tipusProducte: String): Observable<String[]>
+{
+  return this.http.get( this.ApiUrlConfigService._getCombosProdCalibre + tipusProducte, 
+                        this.AuthorizationService.header_token()
+                      )
+                  .map(respuesta => respuesta)
+                  .catch((error: any) => Observable.throw(error));  
+}
+getComboQualitat(tipusProducte: String): Observable<String[]>
+{
+  return this.http.get( this.ApiUrlConfigService._getCombosProdQualitat + tipusProducte, 
                         this.AuthorizationService.header_token()
                       )
                   .map(respuesta => respuesta)
