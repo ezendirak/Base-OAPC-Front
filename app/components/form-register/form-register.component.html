@@ -32,37 +32,38 @@
         <option *ngFor="let c of productes" [ngValue]="c">{{c}}</option>
     </select>
   
-
-  <label for="campoC" class="col-md-2 col-xs-12">Varietat</label>
+    <ng-container *ngIf="comboLleno;then content else other_content"></ng-container>
+    <ng-template #content>
+  <label for="campoC" class="col-md-2 col-xs-12">Color de la Carn</label>
   <!-- <input type="text"  class="col-md-3 col-xs-12"    id="varietat"    name="varietat"    [(ngModel)]="varietat"> -->
   
-  <ng-container *ngIf="comboLleno;then content else other_content"></ng-container>
-  <ng-template #content>
-  <!-- <select class="col-md-3 col-xs-12" name="varietats" [(ngModel)]="selectedVarietat" >
-    <option *ngFor="let v of this.comboInfo.Varietats" [ngValue]="v">{{v}}</option>
-  </select>   -->
+  
+   <select class="col-md-3 col-xs-12" name="varietats" [(ngModel)]="selectedVarietat" >
+    <option *ngFor="let v of this.comboInfo.colorsCarn" [ngValue]="v">{{v}}</option>
+  </select>   
 </ng-template>
 <ng-template #other_content>Siuuu</ng-template>
 </div>
 
 <div class="form-group row margin-bottom">
-  
-    <label for="campoC" class="col-md-2 col-xs-12">Qualitat</label>
     <ng-container *ngIf="comboLleno;then content2 else other_content2"></ng-container>
-  <ng-template #content2>
+    <ng-template #content2>
+    <label for="campoC" class="col-md-2 col-xs-12">Qualitat</label>
+    
     <!-- <input type="text"  class="col-md-3 col-xs-12"    id="qualitat"    name="qualitat"    [(ngModel)]="qualitat"> -->
       <select class="col-md-3 col-xs-12" name="qualitats" [(ngModel)]="selectedQualitat" >
-      <option *ngFor="let q of this.comboInfo.Qualitats" [ngValue]="q">{{q}}</option>
+      <option *ngFor="let q of this.comboInfo.qualitats" [ngValue]="q">{{q}}</option>
     </select>   
   </ng-template>
     <ng-template #other_content2>Siuuu</ng-template>
-  <label for="campoC" class="col-md-2 col-xs-12">Calibre</label>
-  <ng-container *ngIf="comboLleno;then content3 else other_content3"></ng-container>
+    <ng-container *ngIf="comboLleno;then content3 else other_content3"></ng-container>
   <ng-template #content3>
+  <label for="campoC" class="col-md-2 col-xs-12">Calibre</label>
+  
   <!-- <input type="text"  class="col-md-3 col-xs-12"    id="calibre"    name="calibre"    [(ngModel)]="calibre"> -->
-    <!-- <select class="col-md-3 col-xs-12" [(ngModel)]="selectedKalibre" >
-    <option *ngFor="let k of this.comboInfo.Calibres" [ngValue]="k">{{k}}</option>
-  </select> -->
+     <select class="col-md-3 col-xs-12" [(ngModel)]="selectedKalibre" >
+    <option *ngFor="let k of this.comboInfo.calibres" [ngValue]="k">{{k}}</option>
+  </select> 
 </ng-template>
   <ng-template #other_content3>Siuuu</ng-template>
 </div>
