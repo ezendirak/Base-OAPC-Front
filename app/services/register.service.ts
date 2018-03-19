@@ -7,6 +7,7 @@ import { RegisterResponse } from '../interfaces/register-response';
 
 import { Observable}                  from 'rxjs/Rx';
 import { AtributsComboResponse } from '../interfaces/atributs-combo-response';
+import { AtributsComboMap } from '../interfaces/atributs-combo-map';
 
 @Injectable()
 export class RegisterService {
@@ -102,35 +103,44 @@ getCombos(tipusProducte: String): Observable<AtributsComboResponse>
 }
 
 
-getComboColorCarn(tipusProducte: String): Observable<String[]>
+// getComboColorCarn(tipusProducte: String): Observable<String[]>
+// {
+//   return this.http.get( this.ApiUrlConfigService._getCombosProdColorCarn + tipusProducte, 
+//                         this.AuthorizationService.header_token()
+//                       )
+//                   .map(respuesta => respuesta)
+//                   .catch((error: any) => Observable.throw(error));  
+// }
+// getComboVarietat(tipusProducte: String): Observable<String[]>
+// {
+//   return this.http.get( this.ApiUrlConfigService._getCombosProdVarietat + tipusProducte, 
+//                         this.AuthorizationService.header_token()
+//                       )
+//                   .map(respuesta => respuesta)
+//                   .catch((error: any) => Observable.throw(error));  
+// }
+// getComboCalibre(tipusProducte: String): Observable<String[]>
+// {
+//   return this.http.get( this.ApiUrlConfigService._getCombosProdCalibre + tipusProducte, 
+//                         this.AuthorizationService.header_token()
+//                       )
+//                   .map(respuesta => respuesta)
+//                   .catch((error: any) => Observable.throw(error));  
+// }
+// getComboQualitat(tipusProducte: String): Observable<String[]>
+// {
+//   return this.http.get( this.ApiUrlConfigService._getCombosProdQualitat + tipusProducte, 
+//                         this.AuthorizationService.header_token()
+//                       )
+//                   .map(respuesta => respuesta)
+//                   .catch((error: any) => Observable.throw(error));  
+// }
+
+
+getResultatFiltrat(filtre: any): Observable<RegisterResponse[]>
 {
-  return this.http.get( this.ApiUrlConfigService._getCombosProdColorCarn + tipusProducte, 
-                        this.AuthorizationService.header_token()
-                      )
-                  .map(respuesta => respuesta)
-                  .catch((error: any) => Observable.throw(error));  
-}
-getComboVarietat(tipusProducte: String): Observable<String[]>
-{
-  return this.http.get( this.ApiUrlConfigService._getCombosProdVarietat + tipusProducte, 
-                        this.AuthorizationService.header_token()
-                      )
-                  .map(respuesta => respuesta)
-                  .catch((error: any) => Observable.throw(error));  
-}
-getComboCalibre(tipusProducte: String): Observable<String[]>
-{
-  return this.http.get( this.ApiUrlConfigService._getCombosProdCalibre + tipusProducte, 
-                        this.AuthorizationService.header_token()
-                      )
-                  .map(respuesta => respuesta)
-                  .catch((error: any) => Observable.throw(error));  
-}
-getComboQualitat(tipusProducte: String): Observable<String[]>
-{
-  return this.http.get( this.ApiUrlConfigService._getCombosProdQualitat + tipusProducte, 
-                        this.AuthorizationService.header_token()
-                      )
+  return this.http.get( this.ApiUrlConfigService._resultatFiltrat, { params: filtre},
+                  )
                   .map(respuesta => respuesta)
                   .catch((error: any) => Observable.throw(error));  
 }

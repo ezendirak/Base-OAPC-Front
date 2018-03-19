@@ -3,7 +3,7 @@ export interface RegisterResponse {
     periode: string;
     tipusProducte: string;
     varietat: string;
-    colorCanr: string;
+    colorCarn: string;
     qualitat: string;
     quantitatVenuda: number;
     preuSortida: number;

@@ -1,3 +1,4 @@
+import { AtributsComboMap } from './../../interfaces/atributs-combo-map';
 import { Component, OnInit }    from '@angular/core';
 
 import { AuthorizationService } from '../../services/authorization.service';
@@ -25,13 +26,11 @@ export class RegisterComponent implements OnInit {
 
   productes:  String[];
 
-  comboInfo:  AtributsComboResponse;
-  comboVarietat: String[];
-  comboQualitat: String[];
-  comboCalibre:  String[];
-  comboColorCarn: String[];
+  comboInfo:    AtributsComboResponse;
+  comboLleno:  Boolean;
 
-  comboLleno:   Boolean;
+  registres:    RegisterResponse[];
+
   constructor( private AuthorizationService: AuthorizationService, 
                private RegisterService     : RegisterService, 
                private TrazaService        : TrazaService,
@@ -39,9 +38,13 @@ export class RegisterComponent implements OnInit {
   { }
 
   ngOnInit() {    
+    // this.comboInfo.Calibres.push("");
+    // this.comboInfo.Qualitats.push("");
+    // this.comboInfo.Varietats.push("");
+    // this.comboInfo.ColorsCarn.push("");
+    this.comboLleno = false;
     this.getProductes();
     this.pagination = new Pagination;
-    
     this.pagination.page_actual = 1;
     this.pagination.page_max    = 0;
     this.pagination.total_items = 0;
@@ -58,9 +61,9 @@ export class RegisterComponent implements OnInit {
   onClickBuscarForm($event)
   {
     console.log("controller: onClickBuscarForm " + $event);
-    console.log("Info en items: " + this.items);
     this.pagination.page_actual = 1;
     this.getRegistresPage();    
+    this.getResultatFiltrat($event);
   }
 
   onClickPutList($event)
@@ -96,7 +99,7 @@ export class RegisterComponent implements OnInit {
   /////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////  
   /////////////////////////////////////////////////////////////////////////////////////////////
-
+ 
   getRegistres()
   {
     if (this.AuthorizationService.is_logged())
@@ -194,41 +197,25 @@ export class RegisterComponent implements OnInit {
       .subscribe ( respuesta => { this.comboInfo = respuesta;
                                   this.TrazaService.dato("Combos", "API GET Combo OK", this.comboInfo);
                                   this.comboLleno = true;
+                                  console.log("COMBO LLENOS: " + this.comboLleno);
                                 },
                   error =>      { this.TrazaService.error("Combos", "API GET Combo KO", error); } 
+      );   
+  }
+
+
+  
+  getResultatFiltrat(filtro: any)
+  {
+    if (this.AuthorizationService.is_logged())
+    console.log("a la funcio del controlador: " + filtro);
+      this.RegisterService.getResultatFiltrat(filtro)
+      .subscribe ( respuesta => { this.items = respuesta;
+
+                                  this.TrazaService.dato("Registres", "API GET Registres OK", this.items);
+                                },
+                  error =>      { this.TrazaService.error("Registres", "API GET Registres KO", error); } 
       );
-////////////////////////////////////////////////////
-  //     this.RegisterService.getComboColorCarn(tipusProducte)
-  //           .subscribe ( respuesta => { this.comboColorCarn = respuesta;
-
-  //                                       this.TrazaService.dato("Combos", "API GET Combo OK", this.comboColorCarn);
-  //                                     },
-  //                       error =>      { this.TrazaService.error("Combos", "API GET Combo KO", error); } 
-  //           );
-  // ///////////////////////////////////////////////////
-  //     this.RegisterService.getComboVarietat(tipusProducte)
-  //         .subscribe ( respuesta => { this.comboVarietat = respuesta;
-
-  //                                     this.TrazaService.dato("Combos", "API GET Combo OK", this.comboVarietat);
-  //                                   },
-  //                     error =>      { this.TrazaService.error("Combos", "API GET Combo KO", error); } 
-  //         );
-  // /////////////////////////////////////////////////
-  //         this.RegisterService.getComboCalibre(tipusProducte)
-  //             .subscribe ( respuesta => { this.comboCalibre = respuesta;
-
-  //               this.TrazaService.dato("Combos", "API GET Combo OK", this.comboCalibre);
-  //             },
-  //       error =>      { this.TrazaService.error("Combos", "API GET Combo KO", error); } 
-  //       );    
-  //       ////////////////////////////////////////////////
-  //       this.RegisterService.getComboQualitat(tipusProducte)
-  //             .subscribe ( respuesta => { this.comboQualitat = respuesta;
-
-  //               this.TrazaService.dato("Combos", "API GET Combo OK", this.comboQualitat);
-  //             },
-  //       error =>      { this.TrazaService.error("Combos", "API GET Combo KO", error); } 
-  //       );   
   }
 
   refreshPaginationCounters()

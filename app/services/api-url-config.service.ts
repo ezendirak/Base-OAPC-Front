@@ -30,6 +30,7 @@ export class ApiUrlConfigService {
   public _postRegistreURL        = '/api/v4/registres/';
   public _putRegistreURL         = '/api/v4/registres/';
   public _deleteRegistreURL      = '/api/v4/registres/';
+  public _resultatFiltrat         = '/api/v4/filtro/';
 
   public _getProductesURL        = '/api/v3/pdu/productes/';
   public _getCombosProd          = '/api/v3/pdu/combos/';
