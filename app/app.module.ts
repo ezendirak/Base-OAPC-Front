@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { RegisterService } from './services/register.service';
 
 import { BrowserModule }          from '@angular/platform-browser';
@@ -39,10 +40,17 @@ import { ButtonTaulaRegisterComponent } from './components/button-taula-register
 import { FormRegisterComponent } from './components/form-register/form-register.component';
 import { TaulaRegisterComponent } from './components/taula-register/taula-register.component';
 import { RegisterComponent } from './components/register/register.component';
+// TranslateLoader
+import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+//import { TranslateLoader } from '@ngx-translate/core';
+  //////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////
 
-  //////////////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////////////
+export function HttpLoaderFactory(http: HttpClient){
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [ 
@@ -71,6 +79,15 @@ import { RegisterComponent } from './components/register/register.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    
     FormsModule,
     ReactiveFormsModule,
     CollapseModule.forRoot(), 
@@ -85,7 +102,8 @@ import { RegisterComponent } from './components/register/register.component';
     UserService, 
     NotesService,
     MessageService,
-    RegisterService
+    RegisterService,
+    TranslateService
   ],
 
   bootstrap: [AppComponent]

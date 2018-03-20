@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiUrlConfigService }        from './api-url-config.service';
 import { AuthorizationService }       from './authorization.service'; 
 
-import { HttpClient, HttpHeaders }    from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams }    from '@angular/common/http';
 import { RegisterResponse } from '../interfaces/register-response';
 
 import { Observable}                  from 'rxjs/Rx';
@@ -98,50 +98,17 @@ getCombos(tipusProducte: String): Observable<AtributsComboResponse>
   return this.http.get( this.ApiUrlConfigService._getCombosProd + tipusProducte, 
                         this.AuthorizationService.header_token()
                       )
-                  .map(respuesta => respuesta)
                   .catch((error: any) => Observable.throw(error));  
 }
 
 
-// getComboColorCarn(tipusProducte: String): Observable<String[]>
-// {
-//   return this.http.get( this.ApiUrlConfigService._getCombosProdColorCarn + tipusProducte, 
-//                         this.AuthorizationService.header_token()
-//                       )
-//                   .map(respuesta => respuesta)
-//                   .catch((error: any) => Observable.throw(error));  
-// }
-// getComboVarietat(tipusProducte: String): Observable<String[]>
-// {
-//   return this.http.get( this.ApiUrlConfigService._getCombosProdVarietat + tipusProducte, 
-//                         this.AuthorizationService.header_token()
-//                       )
-//                   .map(respuesta => respuesta)
-//                   .catch((error: any) => Observable.throw(error));  
-// }
-// getComboCalibre(tipusProducte: String): Observable<String[]>
-// {
-//   return this.http.get( this.ApiUrlConfigService._getCombosProdCalibre + tipusProducte, 
-//                         this.AuthorizationService.header_token()
-//                       )
-//                   .map(respuesta => respuesta)
-//                   .catch((error: any) => Observable.throw(error));  
-// }
-// getComboQualitat(tipusProducte: String): Observable<String[]>
-// {
-//   return this.http.get( this.ApiUrlConfigService._getCombosProdQualitat + tipusProducte, 
-//                         this.AuthorizationService.header_token()
-//                       )
-//                   .map(respuesta => respuesta)
-//                   .catch((error: any) => Observable.throw(error));  
-// }
 
-
+// https://stackoverflow.com/questions/47551458/how-to-pass-urlsearchparams-in-the-httpclient-get-method-angular-5
 getResultatFiltrat(filtre: any): Observable<RegisterResponse[]>
 {
-  return this.http.get( this.ApiUrlConfigService._resultatFiltrat, { params: filtre},
-                  )
-                  .map(respuesta => respuesta)
+  return this.http.get( this.ApiUrlConfigService._resultatFiltrat, {params: filtre},
+  )
+  .map(respuesta => respuesta)
                   .catch((error: any) => Observable.throw(error));  
 }
 }

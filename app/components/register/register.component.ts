@@ -1,5 +1,6 @@
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AtributsComboMap } from './../../interfaces/atributs-combo-map';
-import { Component, OnInit }    from '@angular/core';
+import { Component, OnInit, Input }    from '@angular/core';
 
 import { AuthorizationService } from '../../services/authorization.service';
 import { NotesService }         from '../../services/notes.service';
@@ -11,6 +12,7 @@ import { RegisterResponse }        from '../../interfaces/register-response';
 import { Pagination }           from '../../model/pagination';
 import { RegisterService } from '../../services/register.service';
 import { AtributsComboResponse } from '../../interfaces/atributs-combo-response';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
@@ -19,6 +21,8 @@ import { AtributsComboResponse } from '../../interfaces/atributs-combo-response'
 })
 export class RegisterComponent implements OnInit {
 
+  @Input() language: string;
+  
   pagination: Pagination;
 
   items:      RegisterResponse[];
@@ -34,14 +38,13 @@ export class RegisterComponent implements OnInit {
   constructor( private AuthorizationService: AuthorizationService, 
                private RegisterService     : RegisterService, 
                private TrazaService        : TrazaService,
-               private modalService        : BsModalService ) 
+               private modalService        : BsModalService,
+               private translate            : TranslateService) 
+               
   { }
 
   ngOnInit() {    
-    // this.comboInfo.Calibres.push("");
-    // this.comboInfo.Qualitats.push("");
-    // this.comboInfo.Varietats.push("");
-    // this.comboInfo.ColorsCarn.push("");
+    
     this.comboLleno = false;
     this.getProductes();
     this.pagination = new Pagination;
@@ -49,11 +52,12 @@ export class RegisterComponent implements OnInit {
     this.pagination.page_max    = 0;
     this.pagination.total_items = 0;
     this.pagination.page_list   = [];
-
     // CONFIGURABLE
-    this.pagination.page_items  = 2;      
+    this.pagination.page_items  = 2;   
+       
   }
 
+  
   /////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////
@@ -96,6 +100,11 @@ export class RegisterComponent implements OnInit {
     console.log("controller: onClickParams " + $event);
     this.getCombos($event);
   }
+
+  // switchLanguage(language: string){
+  //   console.log("Desde el pare: " + this.language);
+  //   this.translate.use(this.language);
+  // }
   /////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////  
   /////////////////////////////////////////////////////////////////////////////////////////////
