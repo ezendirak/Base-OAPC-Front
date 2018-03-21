@@ -94,14 +94,14 @@ getRegistres(): Observable<RegisterResponse[]>
                       .catch((error: any) => Observable.throw(error));
   }
 
-  getProductes(): Observable<string[]>
-{
-  return this.http.get( this.ApiUrlConfigService._getProductesURL, 
-                        this.AuthorizationService.header_token()
-                      )
-                  .map(respuesta => respuesta)
-                  .catch((error: any) => Observable.throw(error));  
-}
+//   getProductes(): Observable<string[]>
+// {
+//   return this.http.get( this.ApiUrlConfigService._getProductesURL, 
+//                         this.AuthorizationService.header_token()
+//                       )
+//                   .map(respuesta => respuesta)
+//                   .catch((error: any) => Observable.throw(error));  
+// }
 
 getCombos(tipusProducte: String): Observable<AtributsComboResponse>
 {

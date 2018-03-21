@@ -33,6 +33,7 @@ export class TaulaRegisterComponent implements OnInit {
   actionDelete($event)
   {
     console.log($event);
+    
     this.evento_list_delete.emit($event);
   }
 

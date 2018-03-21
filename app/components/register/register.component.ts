@@ -22,7 +22,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class RegisterComponent implements OnInit {
 
  
-  
+  filtroFake: any;
+
   pagination: Pagination;
 
   items:      RegisterResponse[];
@@ -46,7 +47,9 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {    
     
     this.comboLleno = false;
-    this.getProductes();
+    // this.getProductes();
+    this.filtroFake = "";
+    
     this.pagination = new Pagination;
     this.pagination.page_actual = 1;
     this.pagination.page_max    = 0;
@@ -54,7 +57,8 @@ export class RegisterComponent implements OnInit {
     this.pagination.page_list   = [];
     // CONFIGURABLE
     this.pagination.page_items  = 2;   
-       
+    
+    this.getRegistresPage(this.filtroFake);   
   }
 
   
@@ -201,17 +205,17 @@ export class RegisterComponent implements OnInit {
   /////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////
 
-  getProductes()
-  {
-    if (this.AuthorizationService.is_logged())
-      this.RegisterService.getProductes()
-      .subscribe ( respuesta => { this.productes = respuesta;
+  // getProductes()
+  // {
+  //   if (this.AuthorizationService.is_logged())
+  //     this.RegisterService.getProductes()
+  //     .subscribe ( respuesta => { this.productes = respuesta;
 
-                                  this.TrazaService.dato("Productes", "API GET Registres OK", this.productes);
-                                },
-                  error =>      { this.TrazaService.error("Productes", "API GET Registres KO", error); } 
-      );
-  }
+  //                                 this.TrazaService.dato("Productes", "API GET Registres OK", this.productes);
+  //                               },
+  //                 error =>      { this.TrazaService.error("Productes", "API GET Registres KO", error); } 
+  //     );
+  // }
   
   getCombos(tipusProducte: String)
   {
