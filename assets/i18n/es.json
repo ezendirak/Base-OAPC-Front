@@ -13,41 +13,42 @@
         "vari": "Variedad",
         "quVe": "Cantidad Vendida",
         "peSo": "Precio de Salida",
-        "tan": "Cerrada"
+        "tan": "Cerrada",
+        "quPe": "Cantidad por Precio"
     },
 
 	"COLORCARN" : {
-        "PR01BL": "Blanca",
-        "PR01GR": "Amarilla",
-        "PR02GR": "Amarilla"
+        "BL": "Blanca",
+        "GR": "Amarilla",
+
+        "": "-"
+    },
+
+    "TIPUSPRODUCTE" : {
+        "PR01": "Melocotón",
+        "PR02": "Pavía",
+        
+        "": "Todos"
     },
 
     "CALIBRE" : {
-        "PR0101": "AAAA (> 90 mm)",
-        "PR0102": "AAA (80-90 mm)",
-        "PR0103": "AA (73-80 mm)",
-        "PR0104": "A (67-73 mm)",
-        "PR0105": "B (61-67 mm)",
-        "PR0106": "C (56-61 mm)",
-        "PR0107": "D (51-56 mm)",
+        "CA01": "AAAA (> 90 mm)",
+        "CA02": "AAA (80-90 mm)",
+        "CA03": "AA (73-80 mm)",
+        "CA04": "A (67-73 mm)",
+        "CA05": "B (61-67 mm)",
+        "CA06": "C (56-61 mm)",
+        "CA07": "D (51-56 mm)",
 
-        "PR0201": "AAAA (> 90 mm)",
-        "PR0202": "AAA (80-90 mm)",
-        "PR0203": "AA (73-80 mm)",
-        "PR0204": "A (67-73 mm)",
-        "PR0205": "B (61-67 mm)",
-        "PR0206": "C (56-61 mm)",
-        "PR0207": "D (51-56 mm)"
+        "": "-"
     },
 
     "QUALITAT" : {
-        "PR0101": "I",
-        "PR0102": "II",
-        "PR0103": "Industrial",
+        "QU01": "I",
+        "QU02": "II",
+        "QU03": "Industrial",
 
-        "PR0201": "I",
-        "PR0202": "II",
-        "PR0203": "Industrial"
+        "": "-"
     }
     
 }

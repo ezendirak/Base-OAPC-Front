@@ -65,6 +65,7 @@ export class FormRegisterComponent implements OnInit {
   switchLanguage(language: string){
     this.traductorService.use(language);
   }
+
   onclick($event)
   {
     console.log("CAPTURADO CLICK EN FORMULARIO");
@@ -73,7 +74,9 @@ export class FormRegisterComponent implements OnInit {
     // this.filtros = { "referencia": this.referencia, "periode" : this.periode, "eInformant" : this.eInformant, "uInformant" : this.uInformant, "tipusProducte" : this.selectedTipusProducte,  "varietat" : this.varietat, "qualitat" : this.selectedQualitat, "calibre" : this.selectedKalibre, "qVenuda" : this.qVenuda, "pSortida" : this.pSortida, "tancada" : this.tancada};
      this.filtros = {"tipusProducte" : this.selectedTipusProducte,  "colorCarn" : this.selectedColorCarn, "qualitat" : this.selectedQualitat, "calibre" : this.selectedKalibre};
      let params = new HttpParams();
-     params = params.set('tipusProducte', this.selectedTipusProducte);
+     if(this.selectedTipusProducte){
+      params = params.set('tipusProducte', this.selectedTipusProducte);
+     }
     // params = params.set('tipusProducte', this.selectedTipusProducte).set('colorCarn', this.selectedColorCarn).set('qualitat', this.selectedQualitat).set('calibre', this.selectedKalibre);
      if (this.selectedColorCarn){
        params = params.set('colorCarn', this.selectedColorCarn);

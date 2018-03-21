@@ -2,32 +2,32 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Periode</th>
-            <th>Tipus producte</th>
-            <th>Varietat</th>
-            <th>Color de Carn</th>
-            <th>Calibre</th>
-            <th>Qualitat</th>
-            <th>Quantitat Venuda (Kg)</th>
-            <th>Preu de Sortida</th>
-            <th>Quantitat x preu</th>
+            <th>{{ 'LITERALS.' + literals.per | translate }}</th>
+            <th>{{ 'LITERALS.' + literals.tipPro | translate }}</th>
+            <th>{{ 'LITERALS.' + literals.vari | translate }}</th>
+            <th>{{ 'LITERALS.' + literals.colCa | translate }}</th>
+            <th>{{ 'LITERALS.' + literals.cali | translate }}</th>
+            <th>{{ 'LITERALS.' + literals.qual | translate }}</th>
+            <th>{{ 'LITERALS.' + literals.quVe | translate }} (Kg)</th>
+            <th>{{ 'LITERALS.' + literals.peSo | translate }}</th>
+            <th>{{ 'LITERALS.' + literals.quPe | translate }}</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let item of items">
             <td>{{item?.periode}}</td>
-            <td>{{item?.tipusProducte}}</td>
+            <td>{{ 'TIPUSPRODUCTE.' + item?.tipusProducte | translate }}</td>
             
             <ng-container *ngIf="item?.varietat;then content else other_content"></ng-container>
-            <ng-template #content><td >{{item?.varietat}}</td></ng-template>
+            <ng-template #content><td >{{ 'VARIETAT.' + item?.varietat | translate }}</td></ng-template>
             <ng-template #other_content><td >-</td></ng-template>
             
             <ng-container *ngIf="item?.colorCarn;then content else other_content"></ng-container>
-            <ng-template #content><td >{{item?.colorCarn}}</td></ng-template>
+            <ng-template #content><td >{{ 'COLORCARN.' + item?.colorCarn | translate}}</td></ng-template>
             <ng-template #other_content><td >-</td></ng-template>
             
-            <td>{{item?.calibre}}</td>
-            <td>{{item?.qualitat}}</td>
+            <td>{{ 'CALIBRE.' + item?.calibre | translate}}</td>
+            <td>{{ 'QUALITAT.' + item?.qualitat | translate}}</td>
             <td>{{item?.quantitatVenuda}}</td>
             <td>{{item?.preuSortida}}</td>
             <td>{{item?.quantitatVenuda * item?.preuSortida}} €</td>

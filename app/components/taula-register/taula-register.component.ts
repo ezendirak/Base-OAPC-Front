@@ -1,4 +1,6 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { LiteralsRegistre } from './../../literals-registre.enum';
 
 @Component({
   selector: 'app-taula-register',
@@ -13,7 +15,10 @@ export class TaulaRegisterComponent implements OnInit {
   @Output() evento_list_put:    EventEmitter<any> = new EventEmitter();
   @Output() evento_list_delete: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  private literals = LiteralsRegistre;
+  constructor(private traductorService: TranslateService) {
+    traductorService.setDefaultLang('cat');
+   }
 
   ngOnInit() {
     console.log("LIST-COMPONENT");

@@ -1,6 +1,6 @@
 export enum LiteralsRegistre {
     ref = "ref",
-    per = "per",
+    col_periodo = "per",
     empIn = "empIn",
     usuIn = "usuIn",
     tipPro = "tipPro",
@@ -10,5 +10,6 @@ export enum LiteralsRegistre {
     vari = "vari", 
     quVe = "quVe",
     peSo = "peSo",
-    tan = "tan"
+    tan = "tan",
+    quPe = "quPe"
 }

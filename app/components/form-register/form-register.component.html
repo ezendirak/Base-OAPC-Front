@@ -32,7 +32,7 @@
 
   
     <select class="col-md-3 col-xs-12" name="productes" [(ngModel)]="selectedTipusProducte" (change) = "changeSelectedTipusProducte($event)" >
-        <option *ngFor="let c of productes" [ngValue]="c">{{c}}</option>
+        <option *ngFor="let c of productes" [ngValue]="c">{{ 'TIPUSPRODUCTE.' + c | translate }}</option>
     </select>
   
     <ng-container *ngIf="this.comboLleno;then content"></ng-container>
