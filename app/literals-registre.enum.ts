@@ -1,6 +1,8 @@
 export enum LiteralsRegistre {
+    ///////////////////////////////////////////////////////////
+    //literals per formulari i taula (Registres de preus)/////
     ref = "ref",
-    col_periodo = "per",
+    per = "per",
     empIn = "empIn",
     usuIn = "usuIn",
     tipPro = "tipPro",
@@ -10,6 +12,13 @@ export enum LiteralsRegistre {
     vari = "vari", 
     quVe = "quVe",
     peSo = "peSo",
-    tan = "tan",
-    quPe = "quPe"
+    tan = "tan",  
+    quPe = "quPe",
+  
+    //////////////////////////////////////////////////////////
+    ///////////////////// Botons /////////////////////////////
+    //////////////////////////////////////////////////////////
+
+    searchB = "searchB"
+
 }

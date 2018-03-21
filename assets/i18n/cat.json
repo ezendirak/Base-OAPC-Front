@@ -1,7 +1,23 @@
 {
     "usuariActual": "Pol Garcia",
 
-    "LITERALS" : {
+    "LITERALS_FORM" : {
+        "ref": "Referència: ",
+        "per": "Període: ",
+        "empIn": "Empressa Informant: ",
+        "usuIn": "Usuari Informant: ",
+        "tipPro": "Tipus de producte: ",
+        "colCa": "Color de Carn: ",
+        "qual": "Qualitat: ",
+        "cali": "Calibre: ",
+        "vari": "Varietat: ",
+        "quVe": "Quantitat Venuda: ",
+        "peSo": "Preu de Sortida: ",
+        "tan": "Tancada: ",
+        "quPe": "Quantitat per Preu: "
+    },
+
+    "LITERALS_COL" : {
         "ref": "Referència",
         "per": "Període",
         "empIn": "Empressa Informant",
@@ -49,6 +65,10 @@
         "QU03": "Industrial",
 
         "": "-"
+    },
+
+    "BOTTON" : {
+        "searchB": "Cercar"
     }
     
 }

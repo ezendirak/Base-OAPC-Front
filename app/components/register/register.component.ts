@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
     console.log("controller: onClickBuscarForm " + $event);
     this.pagination.page_actual = 1;
     this.getRegistresPage($event);    
-    this.getResultatFiltrat($event);
+    // this.getResultatFiltrat($event);
   }
 
   onClickPutList($event)

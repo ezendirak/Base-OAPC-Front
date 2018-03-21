@@ -1,7 +1,23 @@
 {
     "usuariActual": "Pol Garcia",
     
-    "LITERALS" : {
+    "LITERALS_FORM" : {
+        "ref": "Referéncia: ",
+        "per": "Período: ",
+        "empIn": "Empresa Informante: ",
+        "usuIn": "Usuario Informante: ",
+        "tipPro": "Tipo de producto: ",
+        "colCa": "Color de Carne: ",
+        "qual": "Calidad: ",
+        "cali": "Calibre: ",
+        "vari": "Variedad: ",
+        "quVe": "Cantidad Vendida: ",
+        "peSo": "Precio de Salida: ",
+        "tan": "Cerrada: ",
+        "quPe": "Cantidad por Precio: "
+    },
+
+    "LITERALS_COL" : {
         "ref": "Referéncia",
         "per": "Período",
         "empIn": "Empresa Informante",
@@ -27,7 +43,7 @@
     "TIPUSPRODUCTE" : {
         "PR01": "Melocotón",
         "PR02": "Pavía",
-        
+
         "": "Todos"
     },
 
@@ -49,6 +65,10 @@
         "QU03": "Industrial",
 
         "": "-"
+    },
+
+    "BOTTON" : {
+        "searchB": "Buscar"
     }
     
 }
