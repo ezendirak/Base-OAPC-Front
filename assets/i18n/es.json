@@ -1,8 +1,53 @@
 {
-	"usuariActual": "Juanito Villancico",
-	
-     "FILTERPAGE": {
+    "usuariActual": "Pol Garcia",
+    
+    "LITERALS" : {
+        "ref": "Referéncia",
+        "per": "Período",
+        "empIn": "Empresa Informante",
+        "usuIn": "Usuario Informante",
+        "tipPro": "Tipo de producto",
+        "colCa": "Color de Carne",
+        "qual": "Calidad",
+        "cali": "Calibre",
+        "vari": "Variedad",
+        "quVe": "Cantidad Vendida",
+        "peSo": "Precio de Salida",
+        "tan": "Cerrada"
+    },
+
+	"COLORCARN" : {
         "PR01BL": "Blanca",
-		"PR01GR": "Amarilla"
+        "PR01GR": "Amarilla",
+        "PR02GR": "Amarilla"
+    },
+
+    "CALIBRE" : {
+        "PR0101": "AAAA (> 90 mm)",
+        "PR0102": "AAA (80-90 mm)",
+        "PR0103": "AA (73-80 mm)",
+        "PR0104": "A (67-73 mm)",
+        "PR0105": "B (61-67 mm)",
+        "PR0106": "C (56-61 mm)",
+        "PR0107": "D (51-56 mm)",
+
+        "PR0201": "AAAA (> 90 mm)",
+        "PR0202": "AAA (80-90 mm)",
+        "PR0203": "AA (73-80 mm)",
+        "PR0204": "A (67-73 mm)",
+        "PR0205": "B (61-67 mm)",
+        "PR0206": "C (56-61 mm)",
+        "PR0207": "D (51-56 mm)"
+    },
+
+    "QUALITAT" : {
+        "PR0101": "I",
+        "PR0102": "II",
+        "PR0103": "Industrial",
+
+        "PR0201": "I",
+        "PR0202": "II",
+        "PR0203": "Industrial"
     }
+    
 }

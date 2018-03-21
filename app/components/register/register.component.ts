@@ -21,7 +21,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class RegisterComponent implements OnInit {
 
-  @Input() language: string;
+ 
   
   pagination: Pagination;
 
@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
   {
     console.log("controller: onClickBuscarForm " + $event);
     this.pagination.page_actual = 1;
-    this.getRegistresPage();    
+    this.getRegistresPage($event);    
     this.getResultatFiltrat($event);
   }
 
@@ -91,7 +91,7 @@ export class RegisterComponent implements OnInit {
       console.log("controller: onClickPagination " + $event);    
 
       this.pagination.page_actual = $event;
-      this.getRegistresPage();  
+      this.getRegistresPage($event);  
     }
   }
 
@@ -125,13 +125,13 @@ export class RegisterComponent implements OnInit {
   /////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////
 
-  getRegistresPage()
+  getRegistresPage(filtro: any)
   {    
     if (this.AuthorizationService.is_logged())
     {    
-      this.getRegistresCount();
-
-      this.RegisterService.getRegistresPage(this.pagination.page_actual, this.pagination.page_items)
+      // this.getRegistresCount(filtro);
+      this.getRegistresCountFiltrat(filtro);
+      this.RegisterService.getRegistresPage(this.pagination.page_actual, this.pagination.page_items, filtro)
       .subscribe ( respuesta => { this.items = respuesta;  
 
                                   this.pagination.page_actual_items = this.items.length;
@@ -146,6 +146,20 @@ export class RegisterComponent implements OnInit {
   /////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////
+  getRegistresCountFiltrat(filtro: any)
+  {
+    if (this.AuthorizationService.is_logged())
+      this.RegisterService.getRegistresCountFiltrat(filtro)
+      .subscribe ( respuesta => { this.pagination.total_items = respuesta;
+
+                                  this.refreshPaginationCounters();
+                                  this.refreshPaginationList();
+
+                                  this.TrazaService.dato("NOTES", "API GETNOTESCOUNT OK", this.items);                                    
+                                },
+                  error =>      { this.TrazaService.error("NOTES", "API GETNOTESCOUNT KO", error); } 
+      );
+  }
 
   getRegistresCount()
   {
@@ -175,7 +189,7 @@ export class RegisterComponent implements OnInit {
                                   if ((this.pagination.page_actual_items == 1) && (this.pagination.page_actual > 1))
                                     this.pagination.page_actual--;
 
-                                  this.getRegistresPage();
+                                  // this.getRegistresPage();
 
                                   this.TrazaService.dato("NOTES", "API DELETE OK", this.item);                                  
                                 },

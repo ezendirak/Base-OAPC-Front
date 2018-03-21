@@ -7,28 +7,28 @@
 <form #formulario="ngForm" (ngSubmit)="onclick($event)">
   <div class="form-group row margin-bottom">
     <div>
-        <label for="campoA" class="col-md-2 col-xs-12">Referència</label>
+        <label for="campoA" class="col-md-2 col-xs-12">{{ 'LITERALS.' + literals.ref | translate }}</label>
         <input type="text"  class="col-md-3 col-xs-12"    id="referencia"    name="referencia"    [(ngModel)]="referencia">
     </div>
 
     <div>
-        <label for="campoB" class="col-md-2 col-xs-12">Període</label>
+        <label for="campoB" class="col-md-2 col-xs-12">{{ 'LITERALS.' + literals.per | translate }}</label>
         <input type="text"  class="col-md-3 col-xs-12"    id="periode"    name="periode"    [(ngModel)]="periode">
     </div>
   </div>
   <div class="form-group row margin-bottom">
     <div >
-      <label for="campoC" class="col-md-2 col-xs-12">Empresa Informant</label>
+      <label for="campoC" class="col-md-2 col-xs-12">{{ 'LITERALS.' + literals.empIn | translate }}</label>
       <input type="text"  class="col-md-3 col-xs-12"    id="eInformant"    name="eInformant"    [(ngModel)]="eInformant">
     </div>
 
     <div >
-      <label for="campoC" class="col-md-2 col-xs-12">{{usuariActual | translate}}</label>
-      <input [attr.disabled]="true" name="usuariActual" [(ngModel)]="this.usuariActual" type="text"  class="col-md-3 col-xs-12"    id="uInformant"    name="uInformant">
+      <label for="campoC" class="col-md-2 col-xs-12">{{ 'LITERALS.' + literals.usuIn | translate }}</label> 
+      <input [attr.disabled]="true" name="usuariActual"  type="text"  class="col-md-3 col-xs-12"    id="uInformant"    name="uInformant" placeholder="{{ usuariActual | translate}}">
     </div>
   </div>
 <div class="form-group row margin-bottom">
-  <label for="campoC" class="col-md-2 col-xs-12">Tipus Producte</label>
+  <label for="campoC" class="col-md-2 col-xs-12">{{ 'LITERALS.' + literals.tipPro | translate }}</label>
 
   
     <select class="col-md-3 col-xs-12" name="productes" [(ngModel)]="selectedTipusProducte" (change) = "changeSelectedTipusProducte($event)" >
@@ -37,12 +37,12 @@
   
     <ng-container *ngIf="this.comboLleno;then content"></ng-container>
     <ng-template #content>
-  <label for="campoC" class="col-md-2 col-xs-12">Color de la Carn</label>
+  <label for="campoC" class="col-md-2 col-xs-12">{{ 'LITERALS.' + literals.colCa | translate }}</label>
   <!-- <input type="text"  class="col-md-3 col-xs-12"    id="varietat"    name="varietat"    [(ngModel)]="varietat"> -->
   
   
    <select class="col-md-3 col-xs-12" name="colorsCarn" [(ngModel)]="selectedColorCarn" >
-    <option *ngFor="let v of this.comboInfo.colorsCarn" [ngValue]="v">{{'FILTERPAGE.' + v | translate}}</option>
+    <option *ngFor="let v of comboInfo.colorsCarn" [ngValue]="v">{{ 'COLORCARN.' + v | translate }}</option>
   </select>  
 </ng-template> 
 </div>
@@ -51,35 +51,35 @@
 <div class="form-group row margin-bottom">
     <ng-container *ngIf="comboLleno;then content2"></ng-container>
     <ng-template #content2>
-    <label for="campoC" class="col-md-2 col-xs-12">Qualitat</label>
+    <label for="campoC" class="col-md-2 col-xs-12">{{ 'LITERALS.' + literals.qual | translate }}</label>
     
     <!-- <input type="text"  class="col-md-3 col-xs-12"    id="qualitat"    name="qualitat"    [(ngModel)]="qualitat"> -->
       <select class="col-md-3 col-xs-12" name="qualitats" [(ngModel)]="selectedQualitat" >
-      <option *ngFor="let q of this.comboInfo.qualitats" [ngValue]="q">{{q}}</option>
+      <option *ngFor="let q of this.comboInfo.qualitats" [ngValue]="q">{{ 'QUALITAT.' + q | translate }}</option>
     </select>   
   </ng-template>
 
     <ng-container *ngIf="comboLleno;then content3"></ng-container>
   <ng-template #content3>
-  <label for="campoC" class="col-md-2 col-xs-12">Calibre</label>
+  <label for="campoC" class="col-md-2 col-xs-12">{{ 'LITERALS.' + literals.cali | translate }}</label>
   
   <!-- <input type="text"  class="col-md-3 col-xs-12"    id="calibre"    name="calibre"    [(ngModel)]="calibre"> -->
      <select class="col-md-3 col-xs-12" name="calibres" [(ngModel)]="selectedKalibre">
-    <option *ngFor="let k of this.comboInfo.calibres" [ngValue]="k">{{k}}</option>
+    <option *ngFor="let k of this.comboInfo.calibres" [ngValue]="k">{{ 'CALIBRE.' + k | translate }}</option>
   </select> 
 </ng-template>
 </div>
 
 <div class="form-group row margin-bottom">
-  <label for="campoC" class="col-md-2 col-xs-12">Quantitat venuda</label>
+  <label for="campoC" class="col-md-2 col-xs-12">{{ 'LITERALS.' + literals.quVe | translate }}</label>
   <input type="text"  class="col-md-3 col-xs-12"    id="qVenuda"    name="qVenuda"    [(ngModel)]="qVenuda">
 
-  <label for="campoC" class="col-md-2 col-xs-12">Preu a sortida</label>
+  <label for="campoC" class="col-md-2 col-xs-12">{{ 'LITERALS.' + literals.peSo | translate }}</label>
   <input type="text"  class="col-md-3 col-xs-12"    id="pSortida"    name="pSortida"    [(ngModel)]="pSortida">
 </div>
 
 <div class="form-group row margin-bottom">
-  <label for="campoC" class="col-md-2 col-xs-12">Tancada</label>
+  <label for="campoC" class="col-md-2 col-xs-12">{{ 'LITERALS.' + literals.tan | translate }}</label>
   <input type="text"  class="col-md-3 col-xs-12"    id="tancada"    name="tancada"    [(ngModel)]="tancada">
 </div>
 

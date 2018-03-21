@@ -1,3 +1,4 @@
+import { LiteralsRegistre } from './../../literals-registre.enum';
 
 import { AtributsComboResponse } from './../../interfaces/atributs-combo-response';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
@@ -48,7 +49,7 @@ export class FormRegisterComponent implements OnInit {
   // @Input() qualitatsCombo:   String[];
   // @Input() colorsCarnCombo:  String[];
   
-
+ private literals = LiteralsRegistre;
   constructor(private traductorService: TranslateService) {
     
     traductorService.setDefaultLang('cat');

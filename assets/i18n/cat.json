@@ -1,8 +1,53 @@
 {
-	"usuariActual": "Pol Garcia",
-	
-     "FILTERPAGE": {
+    "usuariActual": "Pol Garcia",
+
+    "LITERALS" : {
+        "ref": "Referència",
+        "per": "Període",
+        "empIn": "Empressa Informant",
+        "usuIn": "Usuari Informant",
+        "tipPro": "Tipus de producte",
+        "colCa": "Color de Carn",
+        "qual": "Qualitat",
+        "cali": "Calibre",
+        "vari": "Varietat",
+        "quVe": "Quantitat Venuda",
+        "peSo": "Preu de Sortida",
+        "tan": "Tancada"
+    },
+    
+	"COLORCARN" : {
         "PR01BL": "Blanca",
-		"PR01GR": "Groga"
+        "PR01GR": "Groga",
+        "PR02GR": "Groga"
+    },
+
+    "CALIBRE" : {
+        "PR0101": "AAAA (> 90 mm)",
+        "PR0102": "AAA (80-90 mm)",
+        "PR0103": "AA (73-80 mm)",
+        "PR0104": "A (67-73 mm)",
+        "PR0105": "B (61-67 mm)",
+        "PR0106": "C (56-61 mm)",
+        "PR0107": "D (51-56 mm)",
+
+        "PR0201": "AAAA (> 90 mm)",
+        "PR0202": "AAA (80-90 mm)",
+        "PR0203": "AA (73-80 mm)",
+        "PR0204": "A (67-73 mm)",
+        "PR0205": "B (61-67 mm)",
+        "PR0206": "C (56-61 mm)",
+        "PR0207": "D (51-56 mm)"
+    },
+
+    "QUALITAT" : {
+        "PR0101": "I",
+        "PR0102": "II",
+        "PR0103": "Industrial",
+
+        "PR0201": "I",
+        "PR0202": "II",
+        "PR0203": "Industrial"
     }
+    
 }

@@ -25,7 +25,12 @@ export class ApiUrlConfigService {
 
   public _getRegistresURL        = '/api/v4/registres/';
   public _getRegistresPageURL     = '/api/v4/registres_page/';
+
+  public _getRegistresPageFiltratURL = '/api/v4/registresFiltrat/';
+
   public _getRegistresCountURL   = '/api/v4/registres_count/';
+  public _getRegistresCountURLFiltrat   = '/api/v4/registres_countFiltrat/';
+
   public _getRegistreURL         = '/api/v4/registres/';
   public _postRegistreURL        = '/api/v4/registres/';
   public _putRegistreURL         = '/api/v4/registres/';

@@ -26,13 +26,23 @@ getRegistres(): Observable<RegisterResponse[]>
                   .catch((error: any) => Observable.throw(error));  
 }    
 
-  getRegistresPage(page: number, per_page: number): Observable<RegisterResponse[]>
+  getRegistresPage(page: number, per_page: number, filtro: any): Observable<RegisterResponse[]>
   {
-    return this.http.get( this.ApiUrlConfigService._getRegistresPageURL + "?page=" + page + "&per_page=" + per_page, 
-                          this.AuthorizationService.header_token()
+    return this.http.get( this.ApiUrlConfigService._getRegistresPageFiltratURL + "?page=" + page + "&per_page=" + per_page, 
+                          { params: filtro }
                         )
                     .map(respuesta => respuesta)
                     .catch((error: any) => Observable.throw(error));
+  }
+  
+
+  getRegistresCountFiltrat(filtre: any): Observable<number>
+  {
+    return this.http.get( this.ApiUrlConfigService._getRegistresCountURLFiltrat, 
+                          {params: filtre}
+                        )
+                    .map(respuesta => respuesta)
+                    .catch((error: any) => Observable.throw(error));  
   }
 
   getRegistresCount(): Observable<number>
