@@ -1,3 +1,4 @@
+import { RegisterResponse } from './../../interfaces/register-response';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AtributsComboMap } from './../../interfaces/atributs-combo-map';
 import { Component, OnInit, Input }    from '@angular/core';
@@ -8,11 +9,11 @@ import { TrazaService }         from '../../services/traza.service';
 
 import { BsModalService }       from 'ngx-bootstrap';
 
-import { RegisterResponse }        from '../../interfaces/register-response';
 import { Pagination }           from '../../model/pagination';
 import { RegisterService } from '../../services/register.service';
 import { AtributsComboResponse } from '../../interfaces/atributs-combo-response';
 import { TranslateService } from '@ngx-translate/core';
+import { empty } from 'rxjs/observable/empty';
 
 @Component({
   selector: 'app-register',
@@ -47,7 +48,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {    
     
     this.comboLleno = false;
-    // this.getProductes();
+    this.getProductes();
     this.filtroFake = "";
     
     this.pagination = new Pagination;
@@ -74,18 +75,25 @@ export class RegisterComponent implements OnInit {
     // this.getResultatFiltrat($event);
   }
 
+  afegirForm($event)
+  {
+    console.log("Controlador Pare: " + $event);
+    // console.log("Controlador Pare 2: " + this.item);
+    this.postRegistre($event);
+  }
+
   onClickPutList($event)
   {
     console.log("controller: onClickPutList "); 
     console.log($event);
   }
 
-  onClickDeleteList($event)
+  onClickDeleteList(item)
   {
     console.log("controller: onClickDeleteList ");
-    console.log($event);
+    console.log("Controlador: " + item.id);
 
-    this.deleteRegistre($event.id, true)    
+    this.deleteRegistre(item.id, true)    
   }
 
   onClickPagination($event)
@@ -134,15 +142,15 @@ export class RegisterComponent implements OnInit {
     if (this.AuthorizationService.is_logged())
     {    
       // this.getRegistresCount(filtro);
+      console.log("abans del service "+filtro);
       this.getRegistresCountFiltrat(filtro);
       this.RegisterService.getRegistresPage(this.pagination.page_actual, this.pagination.page_items, filtro)
       .subscribe ( respuesta => { this.items = respuesta;  
-
                                   this.pagination.page_actual_items = this.items.length;
 
-                                  this.TrazaService.dato("NOTES", "API GETNOTESPAGE OK(" + this.pagination.page_actual + ")",this.items.length); 
+                                  this.TrazaService.dato("REGISTRES", "API GETREGISTRESPAGE OK(" + this.pagination.page_actual + ")",this.items.length); 
                                 },
-                  error =>      { this.TrazaService.error("NOTES", "API GETNOTESPAGE KO", error); } 
+                  error =>      { this.TrazaService.error("REGISTRES", "API GETREGISTRESPAGE KO", error); } 
       );
     }
   }
@@ -193,7 +201,7 @@ export class RegisterComponent implements OnInit {
                                   if ((this.pagination.page_actual_items == 1) && (this.pagination.page_actual > 1))
                                     this.pagination.page_actual--;
 
-                                  // this.getRegistresPage();
+                                  this.getRegistresPage(this.filtroFake);
 
                                   this.TrazaService.dato("NOTES", "API DELETE OK", this.item);                                  
                                 },
@@ -205,17 +213,17 @@ export class RegisterComponent implements OnInit {
   /////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////
 
-  // getProductes()
-  // {
-  //   if (this.AuthorizationService.is_logged())
-  //     this.RegisterService.getProductes()
-  //     .subscribe ( respuesta => { this.productes = respuesta;
+  getProductes()
+  {
+    if (this.AuthorizationService.is_logged())
+      this.RegisterService.getProductes()
+      .subscribe ( respuesta => { this.productes = respuesta;
 
-  //                                 this.TrazaService.dato("Productes", "API GET Registres OK", this.productes);
-  //                               },
-  //                 error =>      { this.TrazaService.error("Productes", "API GET Registres KO", error); } 
-  //     );
-  // }
+                                  this.TrazaService.dato("Productes", "API GET Registres OK", this.productes);
+                                },
+                  error =>      { this.TrazaService.error("Productes", "API GET Registres KO", error); } 
+      );
+  }
   
   getCombos(tipusProducte: String)
   {
@@ -244,6 +252,29 @@ export class RegisterComponent implements OnInit {
                   error =>      { this.TrazaService.error("Registres", "API GET Registres KO", error); } 
       );
   }
+
+
+
+  postRegistre(filtro: any)
+  { 
+    if (this.AuthorizationService.is_logged()){
+      console.log("a la funcio del controlador: " + filtro);
+      console.log("abans del service: " + filtro.tipusProducte);
+      this.RegisterService.postRegistre(filtro)
+      .subscribe ( respuesta => { this.item = respuesta;
+
+                                  this.TrazaService.dato("Registres", "API GET Registres OK", this.items);
+                                  this.getRegistresPage(this.filtroFake);
+                                },
+                  error =>      { this.TrazaService.error("Registres", "API GET Registres KO", error); } 
+      );
+    }
+
+  }
+
+
+  /////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////
 
   refreshPaginationCounters()
   {

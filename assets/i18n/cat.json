@@ -68,7 +68,8 @@
     },
 
     "BOTTON" : {
-        "searchB": "Cercar"
+        "searchB": "Cercar",
+        "afegirB": "Afegir nou registre"
     }
     
 }

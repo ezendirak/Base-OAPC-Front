@@ -72,10 +72,10 @@
 
 <div class="form-group row margin-bottom">
   <label for="campoC" class="col-md-2 col-xs-12">{{ 'LITERALS_FORM.' + literals.quVe | translate }}</label>
-  <input type="text"  class="col-md-3 col-xs-12"    id="qVenuda"    name="qVenuda"    [(ngModel)]="qVenuda">
+  <input type="number"  class="col-md-3 col-xs-12"    id="qVenuda"    name="qVenuda"    [(ngModel)]="qVenuda">
 
   <label for="campoC" class="col-md-2 col-xs-12">{{ 'LITERALS_FORM.' + literals.peSo | translate }}</label>
-  <input type="text"  class="col-md-3 col-xs-12"    id="pSortida"    name="pSortida"    [(ngModel)]="pSortida">
+  <input type="number"  class="col-md-3 col-xs-12"    id="pSortida"    name="pSortida"    [(ngModel)]="pSortida">
 </div>
 
 <div class="form-group row margin-bottom">
@@ -85,5 +85,7 @@
 
     <div class="form-group row margin-bottom">
         <button type="submit" class="btn btn-primary">{{ 'BOTTON.' + literals.searchB | translate }}</button>
+        <button type="button" (click)="afegirProd($event)" class="btn btn-primary">{{ 'BOTTON.' + literals.afegirB | translate }}</button>
     </div>    
+
 </form>

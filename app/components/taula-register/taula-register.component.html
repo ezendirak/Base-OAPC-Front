@@ -2,6 +2,7 @@
 <table class="table">
     <thead>
         <tr>
+            <th>ID</th>
             <th>{{ 'LITERALS_COL.' + literals.per | translate }}</th>
             <th>{{ 'LITERALS_COL.' + literals.tipPro | translate }}</th>
             <th>{{ 'LITERALS_COL.' + literals.vari | translate }}</th>
@@ -15,6 +16,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let item of items">
+            <td>{{item?.id}}</td>
             <td>{{item?.periode}}</td>
             <td>{{ 'TIPUSPRODUCTE.' + item?.tipusProducte | translate }}</td>
             

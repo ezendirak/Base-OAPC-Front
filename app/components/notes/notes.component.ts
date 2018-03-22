@@ -173,7 +173,7 @@ export class NotesComponent implements OnInit {
   actionDeleteNote(note)
   {
     //this.deleteNote(1);
-
+    console.log("Test de note: " + note.id);
     this.deleteNote(note.id, true)
   }
 }

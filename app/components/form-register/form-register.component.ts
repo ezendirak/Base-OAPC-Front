@@ -1,3 +1,4 @@
+import { RegisterResponse } from './../../interfaces/register-response';
 import { LiteralsRegistre } from './../../literals-registre.enum';
 
 import { AtributsComboResponse } from './../../interfaces/atributs-combo-response';
@@ -19,27 +20,30 @@ export class FormRegisterComponent implements OnInit {
   @Input()  productes:     string[];
   @Input()  comboInfo:    AtributsComboResponse;
   @Input()  comboLleno:   Boolean;
+  @Input()  item: RegisterResponse;
   @Output() evento_form1: EventEmitter<any> = new EventEmitter();
   @Output() evento_tProduct: EventEmitter<any> = new EventEmitter();
+  @Output() evento_form_afegir: EventEmitter<any> = new EventEmitter();
 
   filtros: any;
 
   referencia: number;
-  periode: String;
-  eInformant: String;
-  uInformant: String;
-  tipusProducte: String;
-  varietat: String;
-  qualitat: String;
-  calibre: String;
+  periode: string;
+  eInformant: string;
+  uInformant: string;
+  tipusProducte: string;
+  varietat: string;
+  qualitat: string;
+  calibre: string;
   qVenuda: number;
   pSortida: number;
-  tancada: String;
+  tancada: string;
   
   selectedTipusProducte:  string;
   selectedQualitat:       string;
   selectedKalibre:        string;
   selectedColorCarn:      string;
+  
   
 
   usuariActual: String;
@@ -48,7 +52,7 @@ export class FormRegisterComponent implements OnInit {
   // @Input() varietatsCombo:   String[];
   // @Input() qualitatsCombo:   String[];
   // @Input() colorsCarnCombo:  String[];
-  
+
  private literals = LiteralsRegistre;
   constructor(private traductorService: TranslateService) {
     
@@ -59,6 +63,7 @@ export class FormRegisterComponent implements OnInit {
   
   
   ngOnInit() {    
+    
   }
 
 
@@ -90,6 +95,18 @@ export class FormRegisterComponent implements OnInit {
       //  this.evento_form1.emit(JSON.stringify(this.filtros));
       console.log(params);
     this.evento_form1.emit(params);
+  }
+
+  afegirProd($event){
+    console.log("Test event: "+ $event);
+
+    this.filtros = {"tipusProducte" : this.selectedTipusProducte,  "colorCarn" : this.selectedColorCarn, "qualitat" : this.selectedQualitat, "calibre" : this.selectedKalibre, "periode" : this.periode, "quantitatVenuda" : this.qVenuda, "preuSortida" : this.pSortida};
+    console.log(this.filtros);
+    
+
+    //  console.log("Afegir prod: " + params);
+    //  console.log("Afegir OBJECTE " + this.item);
+    this.evento_form_afegir.emit(this.filtros);
   }
 
   changeSelectedTipusProducte($event)

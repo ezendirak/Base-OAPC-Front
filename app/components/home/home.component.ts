@@ -94,7 +94,6 @@ export class HomeComponent implements OnInit {
           error => { this.TrazaService.error("HOME", "API WHOAMI KO", error); }
         );
     }
-
   }
 
   ///////////////////////////////////////////////////////////////////////////////////////

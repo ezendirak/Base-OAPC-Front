@@ -68,7 +68,8 @@
     },
 
     "BOTTON" : {
-        "searchB": "Buscar"
+        "searchB": "Buscar",
+        "afegirB": "AÑadir nuevo registro"
     }
     
 }

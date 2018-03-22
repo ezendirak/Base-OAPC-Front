@@ -72,11 +72,11 @@ getRegistres(): Observable<RegisterResponse[]>
                     .catch((error: any) => Observable.throw(error));  
   }
 
-  postRegistre(clau:string, dades: string, producte: string): Observable<RegisterResponse> {
-
+  postRegistre(filtre: any): Observable<RegisterResponse> {
+    console.log("Servei final: " + filtre);
+    
     return this.http.post(  this.ApiUrlConfigService._postRegistreURL,
-                            { "clau": clau, "dades" : dades, "producte" : producte },
-                            this.AuthorizationService.header_token() 
+                            filtre , this.AuthorizationService.header_token()
                           )
                     .map(respuesta => respuesta)
                     .catch((error: any) => Observable.throw(error));
@@ -94,14 +94,14 @@ getRegistres(): Observable<RegisterResponse[]>
                       .catch((error: any) => Observable.throw(error));
   }
 
-//   getProductes(): Observable<string[]>
-// {
-//   return this.http.get( this.ApiUrlConfigService._getProductesURL, 
-//                         this.AuthorizationService.header_token()
-//                       )
-//                   .map(respuesta => respuesta)
-//                   .catch((error: any) => Observable.throw(error));  
-// }
+  getProductes(): Observable<string[]>
+{
+  return this.http.get( this.ApiUrlConfigService._getProductesURL, 
+                        this.AuthorizationService.header_token()
+                      )
+                  .map(respuesta => respuesta)
+                  .catch((error: any) => Observable.throw(error));  
+}
 
 getCombos(tipusProducte: String): Observable<AtributsComboResponse>
 {
@@ -116,6 +116,7 @@ getCombos(tipusProducte: String): Observable<AtributsComboResponse>
 // https://stackoverflow.com/questions/47551458/how-to-pass-urlsearchparams-in-the-httpclient-get-method-angular-5
 getResultatFiltrat(filtre: any): Observable<RegisterResponse[]>
 {
+  console.log("Servei final: " + filtre);
   return this.http.get( this.ApiUrlConfigService._resultatFiltrat, {params: filtre},
   )
   .map(respuesta => respuesta)
