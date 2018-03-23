@@ -37,6 +37,8 @@ export class RegisterComponent implements OnInit {
 
   registres:    RegisterResponse[];
 
+  filtre: any;
+
   constructor( private AuthorizationService: AuthorizationService, 
                private RegisterService     : RegisterService, 
                private TrazaService        : TrazaService,
@@ -71,6 +73,11 @@ export class RegisterComponent implements OnInit {
   {
     console.log("controller: onClickBuscarForm " + $event);
     this.pagination.page_actual = 1;
+    this.filtre = $event;
+    console.log(this.filtre);
+    // if (!this.filtre){
+    //   this.filtre = "";
+    // }
     this.getRegistresPage($event);    
     // this.getResultatFiltrat($event);
   }
@@ -103,7 +110,14 @@ export class RegisterComponent implements OnInit {
       console.log("controller: onClickPagination " + $event);    
 
       this.pagination.page_actual = $event;
-      this.getRegistresPage($event);  
+      // this.getRegistresPage($event);
+      if (this.filtre){
+        console.log(this.filtre);
+        this.getRegistresPage(this.filtre); 
+      }else{
+        this.getRegistresPage(""); 
+      }
+      
     }
   }
 

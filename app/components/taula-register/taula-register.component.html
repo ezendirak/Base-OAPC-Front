@@ -34,7 +34,7 @@
             <td>{{item?.preuSortida}}</td>
             <td>{{item?.quantitatVenuda * item?.preuSortida}} €</td>
             <td>
-                <button type="button" class="btn btn-primary" (click)="actionPut(item)">Modificar</button>
+                <button type="button" class="btn btn-primary" (click)="openModalToEdit(item)">Modificar</button>
             </td>
             <td>
                 <button type="button" class="btn btn-primary" (click)="actionDelete(item)">Borrar</button>

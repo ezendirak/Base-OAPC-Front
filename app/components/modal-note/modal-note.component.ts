@@ -1,3 +1,4 @@
+import { RegisterResponse } from './../../interfaces/register-response';
 import { Component, OnInit }        from '@angular/core';
 
 import { BsModalRef }               from "ngx-bootstrap";
@@ -24,15 +25,27 @@ export class ModalNoteComponent implements  OnInit  {
   lista          : any[] = [];
   botonCerrar    : string;
 
-  datos_entrada : string;
+  datos_entrada : RegisterResponse;
   datos_salida  : string;
 
   public onClose: Subject<boolean>;
  
+  id: number;
+  calibre: string;
+  tipusProducte: string;
+  periode: number;
+  colorCarn: string;
+  qualitat: string;
+  qVenuda:  number;
+  pSortida: number;
+
   constructor(public bsModalRef: BsModalRef) 
   { }
  
   ngOnInit() {
+    // console.log("MODAL MODAL: ");
+    // console.log(this.datos_entrada);
+    
     this.onClose = new Subject();
   }
 

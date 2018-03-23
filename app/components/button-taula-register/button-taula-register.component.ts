@@ -19,6 +19,8 @@ export class ButtonTaulaRegisterComponent implements OnInit {
 
   actionPagination($event)
   {
+    console.log("*****************************************")
+    console.log($event);
     this.evento_list_pagination.emit($event);
   }
 }
