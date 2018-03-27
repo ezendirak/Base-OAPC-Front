@@ -53,6 +53,7 @@ export class RegisterComponent implements OnInit {
                private translate            : TranslateService) 
                
   { }
+@Input() datos_salida: RegisterResponse;
 
   ngOnInit() {    
     
@@ -100,10 +101,11 @@ export class RegisterComponent implements OnInit {
     this.postRegistre($event);
   }
 
-  onClickPutList($event)
+  putRegistre($event)
   {
-    console.log("controller: onClickPutList "); 
+    console.log("********************* controller: onClickPutList *******************"); 
     console.log($event);
+
   }
 
   onClickDeleteList(item)
@@ -142,6 +144,11 @@ export class RegisterComponent implements OnInit {
     // console.log("onclickgetcombosModal: " + $event);
     // console.log($event);
     this.getCombosModal($event);
+  }
+
+  actionToEdit($event){
+    console.log("tanquem el modal per editar!");
+    console.log($event);
   }
   // switchLanguage(language: string){
   //   console.log("Desde el pare: " + this.language);
@@ -315,6 +322,22 @@ export class RegisterComponent implements OnInit {
       console.log("a la funcio del controlador: " + filtro);
       console.log("abans del service: " + filtro.tipusProducte);
       this.RegisterService.postRegistre(filtro)
+      .subscribe ( respuesta => { this.item = respuesta;
+
+                                  this.TrazaService.dato("Registres", "API GET Registres OK", this.items);
+                                  this.getRegistresPage(this.filtroFake);
+                                },
+                  error =>      { this.TrazaService.error("Registres", "API GET Registres KO", error); } 
+      );
+    }
+
+  }
+
+  putRegistreToService(registre: RegisterResponse)
+  { 
+    if (this.AuthorizationService.is_logged()){
+
+      this.RegisterService.putRegistre(registre)
       .subscribe ( respuesta => { this.item = respuesta;
 
                                   this.TrazaService.dato("Registres", "API GET Registres OK", this.items);

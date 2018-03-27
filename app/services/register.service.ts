@@ -84,10 +84,10 @@ getRegistres(): Observable<RegisterResponse[]>
 
   //////////////////////////////////////////////////////////////////////////////////////
 
-  putRegistre(id: number, title: string, content: string): Observable<RegisterResponse>{
+  putRegistre(registre: RegisterResponse): Observable<RegisterResponse>{
 
-      return this.http.put(  this.ApiUrlConfigService._putRegistreURL + id,
-                             { "title": title, "content" : content },
+      return this.http.put(  this.ApiUrlConfigService._putRegistreURL + registre.id,
+                             { params:  registre },
                              this.AuthorizationService.header_token() 
                           )
                       .map(respuesta => respuesta)

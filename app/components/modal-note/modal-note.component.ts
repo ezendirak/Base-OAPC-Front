@@ -30,7 +30,7 @@ export class ModalNoteComponent implements  OnInit  {
   lista          : any[] = [];
   botonCerrar    : string;
 
-  datos_entrada2 : RegisterResponse;
+  datos_entrada : RegisterResponse;
   datos_salida  : RegisterResponse;
   comboGeneral: AtributsComboMap;
 
@@ -39,11 +39,7 @@ export class ModalNoteComponent implements  OnInit  {
   public onClose: Subject<boolean>;
  
   id: number;
-  calibre: string;
-  tipusProducte: string;
-  nouPeriode: string;
-  colorCarn: string;
-  qualitat: string;
+  
   qVenuda:  number;
   pSortida: number;
   varietat: string;
@@ -63,7 +59,6 @@ export class ModalNoteComponent implements  OnInit  {
               ) 
   { }
  
-  @Output() evento_tProductModal: EventEmitter<any> = new EventEmitter();
 
   ngOnInit() {
     // console.log("MODAL MODAL: ");
@@ -78,18 +73,17 @@ export class ModalNoteComponent implements  OnInit  {
 
   public onConfirm(form) {
     //console.log("ON CONFIRM");
-    //console.log(form);
+    console.log(form);
     // this.datos_salida.id = this.id;
-    if (this.varietat){
-      this.nouRegistre = {"tipusProducte" : this.tipusProducte,  "varietat" : this.varietat, "qualitat" : this.qualitat, "calibre" : this.calibre, "periode" : this.nouPeriode, "preu_sortida" : this.pSortida, "quantitat_venuda" : this.qVenuda};
-    } else {
-      this.nouRegistre = {"tipusProducte" : this.tipusProducte,  "colorCarn" : this.colorCarn, "qualitat" : this.qualitat, "calibre" : this.calibre, "periode" : this.nouPeriode, "preu_sortida" : this.pSortida, "quantitat_venuda" : this.qVenuda};
-    }
-    
-
+    // if (this.varietat){
+    //   this.nouRegistre = {"tipusProducte" : this.producteSelected,  "varietat" : this.varietatSelected, "qualitat" : this.qualitatSelected, "calibre" : this.calibreSelected, "periode" : this.nouPeriode, "preu_sortida" : this.pSortida, "quantitat_venuda" : this.qVenuda};
+    // } else {
+    //   this.nouRegistre = {"tipusProducte" : this.producteSelected,  "colorCarn" : this.colorCarnSelected, "qualitat" : this.qualitatSelected, "calibre" : this.calibreSelected, "periode" : this.nouPeriode, "preu_sortida" : this.pSortida, "quantitat_venuda" : this.qVenuda};
+    // }
+    console.log(form.controls['calibres'].value);
     // console.log(form);
     // console.log("hiiiii");
-    console.log(this.nouRegistre);
+    // console.log(this.nouRegistre);
     this.onClose.next(true);
     
     this.bsModalRef.hide();
