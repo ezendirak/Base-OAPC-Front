@@ -1,3 +1,5 @@
+import { AtributsComboMap } from './../../interfaces/atributs-combo-map';
+import { AtributsComboResponse } from './../../interfaces/atributs-combo-response';
 import { RegisterResponse } from './../../interfaces/register-response';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
@@ -14,10 +16,16 @@ export class TaulaRegisterComponent implements OnInit {
 
  
   @Input() items;
-  @Input() productes;
-
+  @Input() productesModal:     String[];
+  @Input() comboInfoModal: AtributsComboResponse;
+  
+  @Input() comboGeneral: AtributsComboMap;
+  @Input() nouRegistre;
+  @Input() comboLlenoModal: boolean;
+  
   @Output() evento_list_put:    EventEmitter<any> = new EventEmitter();
   @Output() evento_list_delete: EventEmitter<any> = new EventEmitter();
+  @Output() evento_getCombos:   EventEmitter<any> = new EventEmitter();
 
   bsModalRef: BsModalRef;
   registreToEdit: RegisterResponse;
@@ -39,7 +47,7 @@ export class TaulaRegisterComponent implements OnInit {
   //   this.evento_list_put.emit(item);
   // }
 
-  openModalToEdit(item) {
+  openModalToEdit(item: RegisterResponse) {
     
     // Pass in data directly before show method
     const initialState = {
@@ -48,22 +56,34 @@ export class TaulaRegisterComponent implements OnInit {
       botonCerrar: "Tancar"  
     };
 
+    // this.bsModalRef.content.comboInfoModal = 
+    
+    this.getCombos(item.tipusProducte);
     this.bsModalRef = this.modalService.show(ModalNoteComponent, {initialState});
-
+    
     // Pass in data directly content atribute after show
-    console.log("xavi");
-    console.log(item);
-    this.bsModalRef.content.datos_entrada = item;    
+    
+    this.bsModalRef.content.datos_entrada = item;  
 
+    this.bsModalRef.content.producteSelected = this.bsModalRef.content.datos_entrada.tipusProducte;
+    this.bsModalRef.content.calibreSelected = this.bsModalRef.content.datos_entrada.calibre;
+    this.bsModalRef.content.colorCarnSelected = this.bsModalRef.content.datos_entrada.colorCarn;
+    this.bsModalRef.content.qualitatSelected = this.bsModalRef.content.datos_entrada.qualitat;
+    this.bsModalRef.content.varietatSelected = this.bsModalRef.content.datos_entrada.varietat;
+    this.bsModalRef.content.comboGeneral = this.comboGeneral;
+    this.bsModalRef.content.comboInfoModal = this.comboGeneral[this.bsModalRef.content.producteSelected];
+    console.log("Productes Modal: " + this.productesModal);
+    this.bsModalRef.content.productesModal = this.productesModal;
     console.log(this.bsModalRef.content.datos_entrada);
     // this.bsModalRef.content.datos_entrada = JSON.parse(this.bsModalRef.content.datos_entrada);
     // this.registreToEdit = this.bsModalRef.content.datos_entrada;
 
-    console.log(this.bsModalRef.content.datos_entrada);
     
     console.log("/////////////////////////////");
-    console.log(this.registreToEdit);
     // Get out
+    
+
+    
     this.bsModalRef.content.onClose
       .subscribe( result => { if (result == true)
                                 this.actionPutYES();                                
@@ -74,6 +94,8 @@ export class TaulaRegisterComponent implements OnInit {
 
   actionPutYES(){
     console.log("ACTION PUT YES")
+    console.log(this.nouRegistre);
+    console.log(this.bsModalRef.content.datos_entrada);
     console.log(this.bsModalRef.content.datos_salida);
   }
 
@@ -90,6 +112,12 @@ export class TaulaRegisterComponent implements OnInit {
     console.log(item);
     
     this.evento_list_delete.emit(item);
+  }
+
+  getCombos(tipusProducte: string){
+    console.log("getcombos al obrir modal del prod: " + tipusProducte);
+
+    this.evento_getCombos.emit(tipusProducte);
   }
 
 }

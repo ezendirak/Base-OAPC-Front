@@ -103,6 +103,15 @@ getRegistres(): Observable<RegisterResponse[]>
                   .catch((error: any) => Observable.throw(error));  
 }
 
+getProductesModal(): Observable<string[]>
+{
+  return this.http.get( this.ApiUrlConfigService._getProductesModalURL, 
+                        this.AuthorizationService.header_token()
+                      )
+                  .map(respuesta => respuesta)
+                  .catch((error: any) => Observable.throw(error));  
+}
+
 getCombos(tipusProducte: String): Observable<AtributsComboResponse>
 {
   return this.http.get( this.ApiUrlConfigService._getCombosProd + tipusProducte, 
@@ -111,6 +120,12 @@ getCombos(tipusProducte: String): Observable<AtributsComboResponse>
                   .catch((error: any) => Observable.throw(error));  
 }
 
+getAllCombos(){
+  return this.http.get(this.ApiUrlConfigService._getAllCombos,
+                        this.AuthorizationService.header_token()
+                      )
+                      .catch((error: any) => Observable.throw(error));
+}
 
 
 // https://stackoverflow.com/questions/47551458/how-to-pass-urlsearchparams-in-the-httpclient-get-method-angular-5

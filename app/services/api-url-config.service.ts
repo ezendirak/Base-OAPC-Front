@@ -38,8 +38,10 @@ export class ApiUrlConfigService {
   public _resultatFiltrat         = '/api/v4/filtro/';
 
   public _getProductesURL        = '/api/v3/pdu/productes/';
+  public _getProductesModalURL        = '/api/v3/pdu/productesModal/';
   public _getCombosProd          = '/api/v3/pdu/combos/';
-
+  public _getAllCombos          = '/api/v3/pduCombos/';
+  
   public _getCombosProdColorCarn     = '/api/v3/pdu/colorcarn/';
   public _getCombosProdQualitat      = '/api/v3/pdu/qualitat/';
   public _getCombosProdVarietat      = '/api/v3/pdu/varietat/';

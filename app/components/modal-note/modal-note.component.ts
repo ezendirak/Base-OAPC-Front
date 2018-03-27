@@ -1,10 +1,15 @@
+import { AtributsComboResponse } from './../../interfaces/atributs-combo-response';
 import { RegisterResponse } from './../../interfaces/register-response';
-import { Component, OnInit }        from '@angular/core';
+import { Component, OnInit, Output, EventEmitter }        from '@angular/core';
 
 import { BsModalRef }               from "ngx-bootstrap";
 
 import { Subject }                  from 'rxjs';
 
+import { LiteralsRegistre } from './../../literals-registre.enum';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateService } from '@ngx-translate/core';
+import { AtributsComboMap } from '../../interfaces/atributs-combo-map';
   //////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////
@@ -25,23 +30,41 @@ export class ModalNoteComponent implements  OnInit  {
   lista          : any[] = [];
   botonCerrar    : string;
 
-  datos_entrada : RegisterResponse;
-  datos_salida  : string;
+  datos_entrada2 : RegisterResponse;
+  datos_salida  : RegisterResponse;
+  comboGeneral: AtributsComboMap;
+
+  comboInfoModal: AtributsComboResponse;
 
   public onClose: Subject<boolean>;
  
   id: number;
   calibre: string;
   tipusProducte: string;
-  periode: number;
+  nouPeriode: string;
   colorCarn: string;
   qualitat: string;
   qVenuda:  number;
   pSortida: number;
+  varietat: string;
+  comboLlenoModal: boolean;
+  nouRegistre: any;
+  productesModal: string[];
+  
+  producteSelected: string;
+  calibreSelected: string;
+  qualitatSelected: string;
+  colorCarnSelected: string;
+  varietatSelected: string;
 
-  constructor(public bsModalRef: BsModalRef) 
+  private literals = LiteralsRegistre;
+  constructor(private traductorService: TranslateService,
+              public bsModalRef: BsModalRef,
+              ) 
   { }
  
+  @Output() evento_tProductModal: EventEmitter<any> = new EventEmitter();
+
   ngOnInit() {
     // console.log("MODAL MODAL: ");
     // console.log(this.datos_entrada);
@@ -56,8 +79,17 @@ export class ModalNoteComponent implements  OnInit  {
   public onConfirm(form) {
     //console.log("ON CONFIRM");
     //console.log(form);
+    // this.datos_salida.id = this.id;
+    if (this.varietat){
+      this.nouRegistre = {"tipusProducte" : this.tipusProducte,  "varietat" : this.varietat, "qualitat" : this.qualitat, "calibre" : this.calibre, "periode" : this.nouPeriode, "preu_sortida" : this.pSortida, "quantitat_venuda" : this.qVenuda};
+    } else {
+      this.nouRegistre = {"tipusProducte" : this.tipusProducte,  "colorCarn" : this.colorCarn, "qualitat" : this.qualitat, "calibre" : this.calibre, "periode" : this.nouPeriode, "preu_sortida" : this.pSortida, "quantitat_venuda" : this.qVenuda};
+    }
     
-    this.datos_salida = "DATOS SALIDA ON CONFIRM";
+
+    // console.log(form);
+    // console.log("hiiiii");
+    console.log(this.nouRegistre);
     this.onClose.next(true);
     
     this.bsModalRef.hide();
@@ -69,9 +101,19 @@ export class ModalNoteComponent implements  OnInit  {
     //console.log("ON CANCEL");    
     //console.log(form);
     
-    this.datos_salida = "DATOS SALIDA ON CANCEL";
+    // this.datos_salida = "DATOS SALIDA ON CANCEL";
     this.onClose.next(false);
 
     this.bsModalRef.hide();
+  }
+
+  changeSelesctedTipusProducteModal($event)
+  {
+    console.log("EMITIMOS EVENTO Cambio de tipusPro: (MODAL)" + $event);
+    this.colorCarnSelected="";
+    this.qualitatSelected="";
+    this.calibreSelected="";
+    this.varietatSelected="";
+    this.comboInfoModal = this.comboGeneral[this.producteSelected];
   }
 }

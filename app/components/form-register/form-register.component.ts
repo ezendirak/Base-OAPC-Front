@@ -6,6 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateService } from '@ngx-translate/core';
+import { AtributsComboMap } from '../../interfaces/atributs-combo-map';
 
 @Component({
   selector: 'app-form-register',
@@ -21,12 +22,14 @@ export class FormRegisterComponent implements OnInit {
   @Input()  comboInfo:    AtributsComboResponse;
   @Input()  comboLleno:   Boolean;
   @Input()  item: RegisterResponse;
+  @Input()  comboGeneral: AtributsComboMap;
+
   @Output() evento_form1: EventEmitter<any> = new EventEmitter();
   @Output() evento_tProduct: EventEmitter<any> = new EventEmitter();
   @Output() evento_form_afegir: EventEmitter<any> = new EventEmitter();
 
+  
   filtros: any;
-
   referencia: number;
   periode: string;
   eInformant: string;

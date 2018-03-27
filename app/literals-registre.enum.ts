@@ -1,6 +1,7 @@
 export enum LiteralsRegistre {
     ///////////////////////////////////////////////////////////
     //literals per formulari i taula (Registres de preus)/////
+    
     ref = "ref",
     per = "per",
     empIn = "empIn",
