@@ -23,7 +23,7 @@
       
           <div>
               <label for="periode" class="col-md-2 col-xs-12">{{ 'LITERALS_FORM.' + literals.per | translate }}</label>
-              <input type="text"  class="col-md-3 col-xs-12"    id="periode"    name="periode"    [(ngModel)]="nouPeriode" value="{{datos_entrada?.periode}}">
+              <input type="text"  class="col-md-3 col-xs-12"    id="nouPeriode"    name="nouPeriode"    [(ngModel)]="nouPeriode" value="{{datos_entrada?.periode}}">
           </div> 
         </div>
 
@@ -40,8 +40,8 @@
         </div>
       <div class="form-group row margin-bottom">
         <label for="campoC" class="col-md-2 col-xs-12">{{ 'LITERALS_FORM.' + literals.tipPro | translate }}</label>
-      
-           <select class="col-md-3 col-xs-12" name="productes" [(ngModel)]="producteSelected" (change) = "changeSelesctedTipusProducteModal($event)" >
+        
+           <select class="col-md-3 col-xs-12" name="productes" [(ngModel)]="producteSelected" (change) = "changeSelesctedTipusProducteModal($event)">
               <option *ngFor="let c of productesModal" [ngValue]="c">{{ 'TIPUSPRODUCTE.' + c | translate }}</option>
           </select>
         
@@ -80,10 +80,10 @@
       
       <div class="form-group row margin-bottom">
         <label for="campoC" class="col-md-2 col-xs-12">{{ 'LITERALS_FORM.' + literals.quVe | translate }}</label>
-        <input type="number"  class="col-md-3 col-xs-12"    id="qVenuda"    name="qVenuda"    [(ngModel)]="qVenuda">
+        <input type="number"  class="col-md-3 col-xs-12"    id="qVenuda"    name="qVenuda"    [(ngModel)]="qVenuda" value="{{datos_entrada?.quantitatVenuda}}">
       
         <label for="campoC" class="col-md-2 col-xs-12">{{ 'LITERALS_FORM.' + literals.peSo | translate }}</label>
-        <input type="number"  class="col-md-3 col-xs-12"    id="pSortida"    name="pSortida"    [(ngModel)]="pSortida">
+        <input type="number"  class="col-md-3 col-xs-12"    id="pSortida"    name="pSortida"    [(ngModel)]="pSoritda" value="{{datos_entrada?.preuSortida}}">
       </div>
       
       <div class="form-group row margin-bottom">

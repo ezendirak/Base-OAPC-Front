@@ -53,7 +53,6 @@ export class RegisterComponent implements OnInit {
                private translate            : TranslateService) 
                
   { }
-@Input() datos_salida: RegisterResponse;
 
   ngOnInit() {    
     
@@ -98,14 +97,16 @@ export class RegisterComponent implements OnInit {
   {
     // console.log("Controlador Pare: " + $event);
     // console.log("Controlador Pare 2: " + this.item);
+    console.log($event);
     this.postRegistre($event);
+    
   }
 
   putRegistre($event)
   {
     console.log("********************* controller: onClickPutList *******************"); 
     console.log($event);
-
+    this.putRegistreToService($event);
   }
 
   onClickDeleteList(item)
@@ -336,7 +337,7 @@ export class RegisterComponent implements OnInit {
   putRegistreToService(registre: RegisterResponse)
   { 
     if (this.AuthorizationService.is_logged()){
-
+      console.log(registre);
       this.RegisterService.putRegistre(registre)
       .subscribe ( respuesta => { this.item = respuesta;
 

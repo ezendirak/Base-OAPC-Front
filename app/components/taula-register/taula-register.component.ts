@@ -71,8 +71,8 @@ export class TaulaRegisterComponent implements OnInit {
     
     // Pass in data directly content atribute after show
     
-    this.bsModalRef.content.datos_entrada = item;  
-
+    this.bsModalRef.content.datos_entrada = item;
+    this.bsModalRef.content.datos_salida = item;
     this.bsModalRef.content.producteSelected = this.bsModalRef.content.datos_entrada.tipusProducte;
     this.bsModalRef.content.calibreSelected = this.bsModalRef.content.datos_entrada.calibre;
     this.bsModalRef.content.colorCarnSelected = this.bsModalRef.content.datos_entrada.colorCarn;
@@ -80,12 +80,13 @@ export class TaulaRegisterComponent implements OnInit {
     this.bsModalRef.content.varietatSelected = this.bsModalRef.content.datos_entrada.varietat;
     this.bsModalRef.content.comboGeneral = this.comboGeneral;
     this.bsModalRef.content.comboInfoModal = this.comboGeneral[this.bsModalRef.content.producteSelected];
-    this.bsModalRef.content.pSortida = this.bsModalRef.content.datos_entrada.preuSortida;
-    this.bsModalRef.content.qVenuda = this.bsModalRef.content.datos_entrada.quantitatVenuda;
+  
+    this.bsModalRef.content.productesModal = this.productesModal;
+    
     
     console.log("Productes Modal: " + this.productesModal);
-    this.bsModalRef.content.productesModal = this.productesModal;
-    console.log(this.bsModalRef.content.datos_entrada);
+    
+    //console.log(this.bsModalRef.content.datos_entrada);
     // this.bsModalRef.content.datos_entrada = JSON.parse(this.bsModalRef.content.datos_entrada);
     // this.registreToEdit = this.bsModalRef.content.datos_entrada;
 
@@ -110,30 +111,20 @@ export class TaulaRegisterComponent implements OnInit {
 
     // console.log(this.bsModalRef.content.calibreSelected);
     console.log(this.bsModalRef.content.datos_salida);
-    this.bsModalRef.content.datos_salida = this.bsModalRef.content.datos_entrada;
-    this.bsModalRef.content.datos_salida.id = this.bsModalRef.content.datos_entrada.id;
-    this.bsModalRef.content.datos_salida.periode = this.bsModalRef.content.nouPeriode;
-    this.bsModalRef.content.datos_salida.tipusProducte = this.bsModalRef.content.producteSelected;
-    this.bsModalRef.content.datos_salida.varietat = this.bsModalRef.content.varietatSelected;
-    this.bsModalRef.content.datos_salida.calibre = this.bsModalRef.content.calibreSelected;
-    this.bsModalRef.content.datos_salida.qualitat = this.bsModalRef.content.qualitatSelected;
-    this.bsModalRef.content.datos_salida.preuSortida = this.bsModalRef.content.pSortida;
-    this.bsModalRef.content.datos_salida.quantitatVenuda = this.bsModalRef.content.qVenuda;
-    this.bsModalRef.content.datos_salida.colorCarn = this.bsModalRef.content.colorCarnSelected;
+    // this.bsModalRef.content.datos_salida = this.bsModalRef.content.datos_entrada;
+    // this.bsModalRef.content.datos_salida.id = this.bsModalRef.content.datos_entrada.id;
+    // this.bsModalRef.content.datos_salida.periode = this.bsModalRef.content.nouPeriode;
+    // this.bsModalRef.content.datos_salida.tipusProducte = this.bsModalRef.content.producteSelected;
+    // this.bsModalRef.content.datos_salida.varietat = this.bsModalRef.content.varietatSelected;
+    // this.bsModalRef.content.datos_salida.calibre = this.bsModalRef.content.calibreSelected;
+    // this.bsModalRef.content.datos_salida.qualitat = this.bsModalRef.content.qualitatSelected;
+    // this.bsModalRef.content.datos_salida.preuSortida = this.bsModalRef.content.pSortida;
+    // this.bsModalRef.content.datos_salida.quantitatVenuda = this.bsModalRef.content.qVenuda;
+    // this.bsModalRef.content.datos_salida.colorCarn = this.bsModalRef.content.colorCarnSelected;
     console.log(this.bsModalRef.content.datos_salida);
-    // this.productEdit.tipusProducte = this.bsModalRef.content.producteSelected;
-    // this.productEdit.periode = this.bsModalRef.content.nouPeriode;
-    // this.productEdit.calibre = this.bsModalRef.content.calibreSelected;
-    // this.productEdit.qualitat = this.bsModalRef.content.qualitatSelected;
-    // this.productEdit.preuSortida = this.bsModalRef.content.pSortida;
-    // this.productEdit.quantitatVenuda = this.bsModalRef.content.qVenuda;
-    // this.productEdit.colorCarn = this.bsModalRef.content.colorCarnSelected;
-    // this.productEdit.varietat= this.bsModalRef.content.varietatSelected;
-    // this.productEdit.id= this.bsModalRef.content.datos_entrada.id;
+
     this.actionToEdit(this.bsModalRef.content.datos_salida);
     // this.actionToEdit(this.productEdit);
-
-
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////

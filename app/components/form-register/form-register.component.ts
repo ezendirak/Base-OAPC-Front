@@ -7,6 +7,8 @@ import { HttpParams } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateService } from '@ngx-translate/core';
 import { AtributsComboMap } from '../../interfaces/atributs-combo-map';
+import { ModalToAddComponent } from '../modal-to-add/modal-to-add.component';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-form-register',
@@ -23,6 +25,7 @@ export class FormRegisterComponent implements OnInit {
   @Input()  comboLleno:   Boolean;
   @Input()  item: RegisterResponse;
   @Input()  comboGeneral: AtributsComboMap;
+  @Input()  productesModal: string[];
 
   @Output() evento_form1: EventEmitter<any> = new EventEmitter();
   @Output() evento_tProduct: EventEmitter<any> = new EventEmitter();
@@ -30,6 +33,7 @@ export class FormRegisterComponent implements OnInit {
 
   
   filtros: any;
+
   referencia: number;
   periode: string;
   eInformant: string;
@@ -47,8 +51,8 @@ export class FormRegisterComponent implements OnInit {
   selectedKalibre:        string;
   selectedColorCarn:      string;
   
+  bsModalRefAdd: BsModalRef;
   
-
   usuariActual: String;
 
   // @Input() calibresCombo:    String[];
@@ -57,7 +61,8 @@ export class FormRegisterComponent implements OnInit {
   // @Input() colorsCarnCombo:  String[];
 
  private literals = LiteralsRegistre;
-  constructor(private traductorService: TranslateService) {
+  constructor(private traductorService: TranslateService,
+              private BsModalRefAdd: BsModalService) {
     
     traductorService.setDefaultLang('cat');
     this.usuariActual = 'Pol Garcia';
@@ -110,6 +115,79 @@ export class FormRegisterComponent implements OnInit {
     //  console.log("Afegir prod: " + params);
     //  console.log("Afegir OBJECTE " + this.item);
     this.evento_form_afegir.emit(this.filtros);
+  }
+
+  openModalToAdd($event){
+    // Pass in data directly before show method
+    const initialState = {
+      titulo: 'Afegir nou registre',
+      lista: [],
+      botonCerrar: "Tancar"  
+    };
+
+    // this.bsModalRef.content.comboInfoModal = 
+    console.log(this.item);
+    // this.getCombos(item.tipusProducte);
+    this.bsModalRefAdd = this.BsModalRefAdd.show(ModalToAddComponent, {initialState});
+    
+    // Pass in data directly content atribute after show
+    this.bsModalRefAdd.content.datos_salida = {id : null, periode : null, tipusProducte : 'PR01', eInformant : 'Nufri', colorCarn : 'GR', calibre : 'CA01', qualitat : 'QU01', varietat : null, quantitatVenuda: '2', preuSortida: '2'};
+    
+    console.log(this.bsModalRefAdd.content.datos_salida);
+    this.bsModalRefAdd.content.comboGeneral = this.comboGeneral;
+    // this.bsModalRefAdd.content.comboInfoModal = this.comboGeneral[this.bsModalRefAdd.content.producteSelected];
+    this.bsModalRefAdd.content.productesModal = this.productesModal;
+    console.log(this.bsModalRefAdd.content.datos_entrada);
+    // this.bsModalRef.content.datos_entrada = JSON.parse(this.bsModalRef.content.datos_entrada);
+    // this.registreToEdit = this.bsModalRef.content.datos_entrada;
+
+    
+    console.log("/////////////////////////////");
+    // Get out
+    
+
+    
+    this.bsModalRefAdd.content.onClose
+      .subscribe( result => { if (result == true)
+                                this.actionPutYES();                                
+                              else  
+                                this.actionPutNO();                                
+      })
+  }
+
+  actionPutYES(){
+    console.log("ACTION PUT YES")
+    // console.log(this.bsModalRef.content.datos_entrada);
+    // console.log(this.productEdit);
+
+    // console.log(this.bsModalRef.content.calibreSelected);
+    console.log(this.bsModalRefAdd.content.datos_salida);
+    console.log(this.item);
+    // this.bsModalRefAdd.content.datos_salida = this.item;
+   
+    // this.bsModalRefAdd.content.datos_salida.periode = this.bsModalRefAdd.content.nouPeriode;
+    // this.bsModalRefAdd.content.datos_salida.tipusProducte = this.bsModalRefAdd.content.producteSelected;
+    // this.bsModalRefAdd.content.datos_salida.varietat = this.bsModalRefAdd.content.varietatSelected;
+    // this.bsModalRefAdd.content.datos_salida.calibre = this.bsModalRefAdd.content.calibreSelected;
+    // this.bsModalRefAdd.content.datos_salida.qualitat = this.bsModalRefAdd.content.qualitatSelected;
+    // this.bsModalRefAdd.content.datos_salida.preuSortida = this.bsModalRefAdd.content.pSortida;
+    // this.bsModalRefAdd.content.datos_salida.quantitatVenuda = this.bsModalRefAdd.content.qVenuda;
+    // this.bsModalRefAdd.content.datos_salida.colorCarn = this.bsModalRefAdd.content.colorCarnSelected;
+    console.log(this.bsModalRefAdd.content.datos_salida);
+
+    this.actionToAdd(this.bsModalRefAdd.content.datos_salida);
+    // this.actionToEdit(this.productEdit);
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////////////
+
+  actionPutNO(){
+    console.log("ACTION NO PUT")
+    console.log(this.bsModalRefAdd.content.datos_salida);
+  }
+
+  actionToAdd(registro: RegisterResponse){
+    this.evento_form_afegir.emit(registro);
   }
 
   changeSelectedTipusProducte($event)

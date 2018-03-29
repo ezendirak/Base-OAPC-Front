@@ -43,6 +43,7 @@ import { RegisterComponent } from './components/register/register.component';
 // TranslateLoader
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ModalToAddComponent } from './components/modal-to-add/modal-to-add.component';
 //import { TranslateLoader } from '@ngx-translate/core';
   //////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////
@@ -70,10 +71,11 @@ export function HttpLoaderFactory(http: HttpClient){
     ButtonTaulaRegisterComponent,
     FormRegisterComponent,
     TaulaRegisterComponent,
-    RegisterComponent
+    RegisterComponent,
+    ModalToAddComponent
   ],
 
-  entryComponents: [ModalNoteComponent],
+  entryComponents: [ModalNoteComponent, ModalToAddComponent],
 
   imports: [
     BrowserModule,

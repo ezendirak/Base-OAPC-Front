@@ -86,9 +86,8 @@ getRegistres(): Observable<RegisterResponse[]>
 
   putRegistre(registre: RegisterResponse): Observable<RegisterResponse>{
 
-      return this.http.put(  this.ApiUrlConfigService._putRegistreURL + registre.id,
-                             { params:  registre },
-                             this.AuthorizationService.header_token() 
+      return this.http.put(  this.ApiUrlConfigService._putRegistreURL,
+                             registre, this.AuthorizationService.header_token()
                           )
                       .map(respuesta => respuesta)
                       .catch((error: any) => Observable.throw(error));
